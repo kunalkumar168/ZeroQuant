@@ -4,7 +4,7 @@
 export CUDA_VISIBLE_DEVICES=0
 
 ######### fp16
-python -m torch.distributed.launch --nproc_per_node=1 \
+torchrun --nproc_per_node=1 \
     --master_port 12345 \
     run_clm_no_trainer.py \
     --dataset_name wikitext \
@@ -14,7 +14,8 @@ python -m torch.distributed.launch --nproc_per_node=1 \
     --num_train_epochs 0 \
     --deepspeed_config config/ds_config_W8A8_Qgroup64_fp32.json \
     --deepspeed \
-    --output_dir ./output/W8A8
+    --output_dir ./output/W8A8 \
+    --local_rank 0
 ### the following is the output of the above command
 ### Before converting the module COVN1D to linear and init_compression: 19.371443732303174
 ### Before cleaning, Epoch at 0 with Perplexity: 19.47031304212775

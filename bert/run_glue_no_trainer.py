@@ -527,4 +527,6 @@ def main():
         save_clean_best_model(args, print_rank_0,  model, tokenizer, config, redundancy_clean, eval_dataloader, mm_eval_dataloader, device, is_regression, previous_best, best_dev_acc, ds_config=ds_config)
 
 if __name__ == "__main__":
+
+    print("torch version:", torch.__version__)
     main()

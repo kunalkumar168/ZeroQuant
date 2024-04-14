@@ -13,11 +13,10 @@ mkdir -p ${SAVE_PATH}
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% if users provide *NO* models, use the following script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% the following command will first download huggingface models and then compress %%%%%%%
 MODEL=yoshitomo-matsubara/bert-base-uncased-${TASK_NAME} ## for both student and teacher
-python -m torch.distributed.launch --nproc_per_node=1 \
-  --master_port 66664 \
+torchrun --nproc_per_node=1 \
+  --master_port 65330 \
   run_glue_no_trainer.py \
   --seed 42 \
-  --distill_method one_stage \
   --model_name_or_path ${MODEL} \
   --task_name $TASK_NAME \
   --max_length 128 \
@@ -30,7 +29,9 @@ python -m torch.distributed.launch --nproc_per_node=1 \
   --deepspeed \
   --save_best_model --clean_best_model \
   --gradient_accumulation_steps 1 \
-  --output_dir ${SAVE_PATH} &>> ${SAVE_PATH}/train.log
+  --output_dir ${SAVE_PATH} \
+  --local_rank 0 \
+  --distill_method zero_stage \
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% users provide models  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # MODEL_BASE=/blob/users/xwu/compression/huggingface_models/bert_base_uncased ## or you could use bert-base-uncased

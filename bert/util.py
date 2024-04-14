@@ -117,7 +117,7 @@ def replace_config(args, config, model_tmp, label_list, num_labels=2,label_to_id
 def do_eval(args, model, eval_dataloader, mm_eval_dataloader, device, is_regression=False):
     model.eval()
     if args.task_name is not None:
-        metric = load_metric("glue", args.task_name)
+        metric = load_metric("glue", args.task_name, trust_remote_code=True)
     else:
         metric = load_metric("accuracy")
 

@@ -35,7 +35,7 @@
           "quantizer_kernel": false,
           "schedule_offset": 0,
           "quantize_groups": 48,
-          "quantize_verbose": false,
+          "quantize_verbose": true,
           "quantization_type": "symmetric",
           "quantize_weight_in_forward": true,
           "rounding": "nearest",
