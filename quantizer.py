@@ -45,6 +45,8 @@ class StaticQuantActivation(nn.Module):
         self.range_momentum_param = range_momentum_param
         if quantization_type == 'symmetric':
             self.activation_quantizer = QuantSym.apply
+        else:
+            raise NotImplementedError
 
         self.register_buffer('min_max', torch.zeros(2))
 
@@ -56,3 +58,5 @@ class StaticQuantActivation(nn.Module):
             self.min_max[1] = self.range_momentum_param * self.min_max[1] + (1 - self.range_momentum_param) * max_val
         out = self.activation_quantizer(x, bits, self.min_max[0], self.min_max[1])
         return out
+    
+
