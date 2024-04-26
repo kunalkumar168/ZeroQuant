@@ -364,5 +364,11 @@ def save_clean_best_model(args, print_rank_0,  model, tokenizer, config, redunda
             if args.deepspeed:
                 new_json_path = os.path.join(args.output_dir, "ds_config.json")
                 with open(new_json_path, 'w') as f:
-                    json.dump(ds_config, f)        
+                    json.dump(ds_config, f)   
+
+
+#### for profiling
+def log_profiling_metrics(prof, time_required):
+    #print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
+    print(prof.key_averages().table(sort_by="cuda_time_total", row_limit=10))
         

@@ -1,11 +1,13 @@
 from transformers import AutoTokenizer, BertForSequenceClassification, AutoConfig, PretrainedConfig, default_data_collator, AdamW
 from datasets import load_dataset, load_metric
 import torch
+from torch.profiler import profile, record_function, ProfilerActivity
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from tqdm import tqdm
 from torch.cuda.amp import autocast
 import json
 from compress import compress, fix_compression
+from bert.util import log_profiling_metrics
 import argparse
 import time
 from copy import deepcopy
@@ -47,16 +49,18 @@ def evaluate(model, valid_dataloader, task_name, device):
     model.to(device)
     metric = load_metric('glue', task_name, trust_remote_code=True)
     time_required = []
-    for batch in tqdm(valid_dataloader):
-        batch = { k:v.to(device) for k, v in batch.items() }
-        start_time = time.time()
-        logits = model(**batch).logits
-        time_required.append(time.time() - start_time)
-        predictions = logits.argmax(dim=-1)
-        metric.add_batch(predictions=predictions, references=batch['labels'])
+    with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], record_shapes=False) as prof:
+        for batch in tqdm(valid_dataloader):
+            batch = {k: v.to(device) for k, v in batch.items()}
+            start_time = time.time()
+            with record_function("model_inference"):
+                logits = model(**batch).logits
+            time_required.append(time.time() - start_time)
+            predictions = logits.argmax(dim=-1)
+            metric.add_batch(predictions=predictions, references=batch['labels'])
+    log_profiling_metrics(prof, time_required)
     print('Average time taken for batch:', np.mean(time_required))
     return metric.compute()
-
 
 
 if __name__ == '__main__':
