@@ -1,3 +1,4 @@
+import os
 from transformers import AutoTokenizer, BertForSequenceClassification, AutoConfig, PretrainedConfig, default_data_collator, AdamW
 from datasets import load_dataset, load_metric
 import torch
@@ -7,11 +8,12 @@ from tqdm import tqdm
 from torch.cuda.amp import autocast
 import json
 from compress import compress, fix_compression
-from bert.util import log_profiling_metrics
+from utils import log_profiling_metrics, get_logger, write_quant_results_to_file
 import argparse
 import time
 from copy import deepcopy
 import numpy as np
+import logging
 
 ACC_TASKS = ["mnli", "mrpc", "sst2", "qqp", "qnli", "rte"]
 
@@ -27,28 +29,41 @@ TASKS_TO_KEYS = {
     "wnli": ("sentence1", "sentence2"),
 }
 
-def main(model, quant_config, valid_dataloader, task_name, device):
 
-
-    print('Size before Quantization', model.get_memory_footprint())
-    print('Accuracy before quantization', evaluate(model, valid_dataloader, task_name, device))
-
-    # qunatized_model = compress(model, quant_config)
-
-    # print('Accuracy after quantization', evaluate(qunatized_model, valid_dataloader, task_name, device))
-
-    fixed_quantized_model = fix_compression(model, quant_config)
-    print('Size after Quantization', fixed_quantized_model.get_memory_footprint())
-
-    print('Accuracy after quantization', evaluate(fixed_quantized_model, valid_dataloader, task_name, device))
-
+def get_memory_footprint(model):
+    mem_params = sum([param.nelement()*param.element_size() for param in model.parameters()])
+    mem_bufs = sum([buf.nelement()*buf.element_size() for buf in model.buffers()])
+    mem = mem_params + mem_bufs # in bytes
+    return mem/(1e9)
     
+def main(model, quant_config, valid_dataloader, task_name, device, profiling_path, logger):
+    model_name = quant_config['model']['name']
+    logger.info('MODEL NAME: %s', model_name)
+    logger.info('TASK NAME: %s', task_name)
+    logger.info('DEVICE: %s', device)
+
+    logger.info('Evaluating model before quantization...')
+    model_size = get_memory_footprint(model)
+    logger.info('Size before Quantization (GB): %s', model_size)
+    accuracy = evaluate(model, valid_dataloader, task_name, device, logger, profiling_path, model_name, is_quantized=False)
+    logger.info('Accuracy before quantization: %s', accuracy)
+
+    logger.info('Quantizing model...')
+    fixed_quantized_model = fix_compression(model, quant_config)
+    quantized_size = get_memory_footprint(fixed_quantized_model)
+    logger.info('Size after Quantization (GB): %s', quantized_size)
+    quantized_accuracy = evaluate(fixed_quantized_model, valid_dataloader, task_name, device, logger, profiling_path, model_name, is_quantized=True)
+    logger.info('Accuracy after quantization: %s', quantized_accuracy)
+    
+    write_quant_results_to_file(model_size, accuracy, quantized_size, quantized_accuracy, task_name, logger)
+
 @torch.inference_mode()
-def evaluate(model, valid_dataloader, task_name, device):
+def evaluate(model, valid_dataloader, task_name, device, logger, profiling_path, model_name, is_quantized=False):
     model.eval()
     model.to(device)
     metric = load_metric('glue', task_name, trust_remote_code=True)
     time_required = []
+
     with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], record_shapes=False) as prof:
         for batch in tqdm(valid_dataloader):
             batch = {k: v.to(device) for k, v in batch.items()}
@@ -58,8 +73,10 @@ def evaluate(model, valid_dataloader, task_name, device):
             time_required.append(time.time() - start_time)
             predictions = logits.argmax(dim=-1)
             metric.add_batch(predictions=predictions, references=batch['labels'])
-    log_profiling_metrics(prof, time_required)
-    print('Average time taken for batch:', np.mean(time_required))
+
+    log_profiling_metrics(prof, model_name, task_name, logger, file_path=profiling_path, is_quantized=is_quantized)
+    logger.info('Average time taken for batch: %s', np.mean(time_required))
+
     return metric.compute()
 
 
@@ -67,6 +84,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='BERT quantization')
     parser.add_argument('--task-name', type=str, default='mnli', help='Task name')
     parser.add_argument('--quant-config', type=str, default='bert_config.json', help='Quantization config file')
+    parser.add_argument('--profiling-path', type=str, default='profiling_results', help='Directory to save profiling results')
+    parser.add_argument('--logging-file-path', type=str, default='logs.log', help='Directory to save logs')
     args = parser.parse_args()
 
 
@@ -74,6 +93,7 @@ if __name__ == '__main__':
     with open(args.quant_config, 'r') as f:
         quant_config = json.load(f)
 
+    logger = get_logger(args.logging_file_path)
 
     task_name = args.task_name
     raw_datasets = load_dataset("glue", task_name)
@@ -133,4 +153,5 @@ if __name__ == '__main__':
                         batch_size=256
     )
 
-    main(model, quant_config, valid_dataloader, args.task_name, device)
+    main(model, quant_config, valid_dataloader, args.task_name, device, args.profiling_path, logger)
+    logger.info('*****DONE with the current model!*****')

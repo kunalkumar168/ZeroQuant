@@ -1,0 +1,17 @@
+2024-04-28 03:01:58,834 - INFO - MODEL NAME: bert-base
+2024-04-28 03:01:58,849 - INFO - TASK NAME: cola
+2024-04-28 03:01:58,850 - INFO - DEVICE: cuda
+2024-04-28 03:01:58,856 - INFO - Evaluating model before quantization...
+2024-04-28 03:01:58,870 - INFO - Size before Quantization (GB): 0.437943304
+2024-04-28 03:02:17,773 - INFO - Profiling results...
+2024-04-28 03:02:18,557 - INFO - Profiling results for bert-base and cola are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/ZeroQuant/results/profiling_results folder.
+2024-04-28 03:02:18,575 - INFO - Average time taken for batch: 0.9172216892242432
+2024-04-28 03:02:18,749 - INFO - Accuracy before quantization: {'matthews_correlation': 0.6104966084654571}
+2024-04-28 03:02:18,750 - INFO - Quantizing model...
+2024-04-28 03:02:19,398 - INFO - Size after Quantization (GB): 0.112816648
+2024-04-28 03:02:31,432 - INFO - Profiling results...
+2024-04-28 03:02:33,287 - INFO - Profiling results for bert-base and cola are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/ZeroQuant/results/profiling_results folder.
+2024-04-28 03:02:33,373 - INFO - Average time taken for batch: 0.1348424434661865
+2024-04-28 03:02:33,850 - INFO - Accuracy after quantization: {'matthews_correlation': 0.6178107578201322}
+2024-04-28 03:02:33,882 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/ZeroQuant/results/bert-base-cola.txt
+2024-04-28 03:02:33,883 - INFO - *****DONE with the current model!*****
