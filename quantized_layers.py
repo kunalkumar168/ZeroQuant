@@ -21,9 +21,9 @@ def get_quantizer(quant_type, bits, group_num):
     else:
         raise NotImplementedError
     
-def get_dequantizer(quant_type, dtype, pre_quant_shape):
+def get_dequantizer(quant_type, dtype, pre_quant_shape, bits):
     if quant_type == 'symmetric':
-        return SymDequantizer(dtype, pre_quant_shape)
+        return SymDequantizer(dtype, pre_quant_shape, bits)
     else:
         raise NotImplementedError
 
@@ -41,7 +41,7 @@ class FixQuantizedLinear(nn.Linear):
         self.quantizer = get_quantizer(quant_type, bits, group_num)
         self.weight, self.scale = get_quant_weight_wrapper(pre_quant_layer.weight, self.quantizer)
         self.bias = pre_quant_layer.bias
-        self.weight.dequantizer = get_dequantizer(quant_type, pre_quant_layer.weight.dtype, pre_quant_layer.weight.shape)
+        self.weight.dequantizer = get_dequantizer(quant_type, pre_quant_layer.weight.dtype, pre_quant_layer.weight.shape, bits)
         self.activation_quant_enabled = False
 
     def enable_activation_quantization(self, quant_bits, quant_type='symmetric', calibration='dynamic'):
@@ -67,7 +67,7 @@ class FixQuantizedLinear(nn.Linear):
                 num_groups = 1
             x = self.activation_quantizer(x, self.activation_quant_bits, None, None, num_groups)
 
-        return torch._C._nn.linear(x, temp_dequantized_weight, self.bias)
+        return nn.functional.linear(x, temp_dequantized_weight, self.bias)
     
 
 class FixQuantizedEmbedding(nn.Embedding):
@@ -90,7 +90,7 @@ class FixQuantizedEmbedding(nn.Embedding):
         self.quantizer = get_quantizer(quant_type, bits, group_num)
         self.weight, self.scale = get_quant_weight_wrapper(pre_quant_layer.weight, self.quantizer)
 
-        self.weight.dequantizer = get_dequantizer(quant_type, pre_quant_layer.weight.dtype, pre_quant_layer.weight.shape)
+        self.weight.dequantizer = get_dequantizer(quant_type, pre_quant_layer.weight.dtype, pre_quant_layer.weight.shape, bits)
 
     def forward(self, x):
         temp_dequantized_weight = self.weight.dequantizer.dequantize(self.weight, self.scale)
