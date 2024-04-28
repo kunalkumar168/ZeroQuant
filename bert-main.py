@@ -82,6 +82,7 @@ def evaluate(model, valid_dataloader, task_name, device, logger, profiling_path,
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='BERT quantization')
+    parser.add_argument('--model-name', type=str, default='bert_base', help='Model name')
     parser.add_argument('--task-name', type=str, default='mnli', help='Task name')
     parser.add_argument('--quant-config', type=str, default='bert_config.json', help='Quantization config file')
     parser.add_argument('--profiling-path', type=str, default='profiling_results', help='Directory to save profiling results')
@@ -93,7 +94,7 @@ if __name__ == '__main__':
     with open(args.quant_config, 'r') as f:
         quant_config = json.load(f)
 
-    logger = get_logger(args.logging_file_path)
+    logger = get_logger(args.model_name, args.task_name, args.logging_file_path)
 
     task_name = args.task_name
     raw_datasets = load_dataset("glue", task_name)
@@ -154,4 +155,4 @@ if __name__ == '__main__':
     )
 
     main(model, quant_config, valid_dataloader, args.task_name, device, args.profiling_path, logger)
-    logger.info('*****DONE with the current model!*****')
+    logger.info('*****DONE with the current task!*****')

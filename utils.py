@@ -1,9 +1,16 @@
 import os
 import logging
 
-def get_logger(log_file_path):
-    logging.basicConfig(filename=log_file_path, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
+def get_logger(model_name, task_name, log_file_path):
+    logs_dir = os.path.join(os.getcwd(), 'logs') 
+    if not os.path.exists(logs_dir):
+        os.makedirs(logs_dir)
+
+    file_path = os.path.join(logs_dir, f"{model_name}_{task_name}_{log_file_path}")
+
+    logging.basicConfig(filename=file_path, filemode='w', format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
     logger = logging.getLogger(__name__)
+
     return logger
 
 def write_profiling_results(prof, model, task, processor_type="cpu", profiling_type="time", file_path="profiling_results", row_limit=10, is_quantized=False):
