@@ -13,3 +13,7 @@ For RoBERTa :
 ```
 python roberta-main.py --model-name roberta-base --task-name qnli --quant-config quant_configs/roberta_config.json
 ```
+or Run for all the task at once by -
+```
+bash roberta_run.bash
+```
