@@ -27,8 +27,9 @@ TASKS_TO_KEYS = {
 
 def main(model, quant_config, valid_dataloader, task_name, device):
 
-
-    print('Size before Quantization', model.get_memory_footprint())
+    print('Processing task name:', task_name)
+    old_model_size = model.get_memory_footprint()
+    print('Size before Quantization', old_model_size)
     print('Accuracy before quantization', evaluate(model, valid_dataloader, task_name, device))
 
     # qunatized_model = compress(model, quant_config)
@@ -36,7 +37,10 @@ def main(model, quant_config, valid_dataloader, task_name, device):
     # print('Accuracy after quantization', evaluate(qunatized_model, valid_dataloader, task_name, device))
 
     fixed_quantized_model = fix_compression(model, quant_config)
-    print('Size after Quantization', fixed_quantized_model.get_memory_footprint())
+    quant_model_size = fixed_quantized_model.get_memory_footprint()
+
+    print('Size after Quantization', quant_model_size)
+    print('Compression ratio:', old_model_size / quant_model_size)
 
     print('Accuracy after quantization', evaluate(fixed_quantized_model, valid_dataloader, task_name, device))
 
@@ -44,10 +48,9 @@ def main(model, quant_config, valid_dataloader, task_name, device):
 @torch.inference_mode()
 def evaluate(model, valid_dataloader, task_name, device):
     model.eval()
-    model.to(device)
     metric = load_metric('glue', task_name, trust_remote_code=True)
     time_required = []
-    for batch in tqdm(valid_dataloader):
+    for batch in valid_dataloader:
         batch = { k:v.to(device) for k, v in batch.items() }
         start_time = time.time()
         logits = model(**batch).logits
@@ -55,27 +58,16 @@ def evaluate(model, valid_dataloader, task_name, device):
         predictions = logits.argmax(dim=-1)
         metric.add_batch(predictions=predictions, references=batch['labels'])
     print('Average time taken for batch:', np.mean(time_required))
-    return metric.compute()
+    eval_metrics = metric.compute()
+    eval_metrics['average'] = np.mean(list(eval_metrics.values()))
+    return eval_metrics
 
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='BERT quantization')
-    parser.add_argument('--task-name', type=str, default='mnli', help='Task name')
-    parser.add_argument('--quant-config', type=str, default='bert_config.json', help='Quantization config file')
-    args = parser.parse_args()
-
-
-    quant_config = None
-    with open(args.quant_config, 'r') as f:
-        quant_config = json.load(f)
-
-
-    task_name = args.task_name
+def process_task(task_name):
+    task_name = task_name
     raw_datasets = load_dataset("glue", task_name)
-    model_name = f'yoshitomo-matsubara/bert-base-uncased-{args.task_name}'
+    model_name = f'yoshitomo-matsubara/bert-base-uncased-{task_name}'
 
-    is_regression = args.task_name == "stsb"
+    is_regression = task_name == "stsb"
     if not is_regression:
         labels = raw_datasets["train"].features["label"].names
         num_labels = len(labels)
@@ -84,14 +76,14 @@ if __name__ == '__main__':
         num_labels = 1
 
     num_labels = len(labels)
-    config = AutoConfig.from_pretrained(model_name, num_labels=num_labels, finetuning_task=args.task_name)
+    config = AutoConfig.from_pretrained(model_name, num_labels=num_labels, finetuning_task=task_name)
 
     model = BertForSequenceClassification.from_pretrained(model_name, config=config, from_tf=False)
     tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-    sentence1_key, sentence2_key = TASKS_TO_KEYS[args.task_name]
+    model = model.to(device).half()
+    sentence1_key, sentence2_key = TASKS_TO_KEYS[task_name]
     label_to_id = None
 
     if PretrainedConfig(num_labels=num_labels).label2id != model.config.label2id and not is_regression:
@@ -119,7 +111,7 @@ if __name__ == '__main__':
         desc='Running tokenizer on dataset'
     )
 
-    valid_dataset = processed_dataset["validation_matched" if args.task_name == "mnli" else "validation"]
+    valid_dataset = processed_dataset["validation_matched" if task_name == "mnli" else "validation"]
 
 
     valid_sampler = SequentialSampler(valid_dataset)
@@ -129,4 +121,29 @@ if __name__ == '__main__':
                         batch_size=256
     )
 
-    main(model, quant_config, valid_dataloader, args.task_name, device)
+    main(model, quant_config, valid_dataloader, task_name, device)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='BERT quantization')
+    parser.add_argument('--task-name', type=str, default=None, help='GLUE Task name')
+    parser.add_argument('--quant-config', type=str, default='bert_config.json', help='Quantization config file')
+    args = parser.parse_args()
+
+
+    quant_config = None
+    with open(args.quant_config, 'r') as f:
+        quant_config = json.load(f)
+
+    print('Using quantization config')
+    print(quant_config)
+
+
+    task_name = args.task_name
+    if not args.task_name:
+        task_name = list(TASKS_TO_KEYS.keys())
+
+    if isinstance(task_name, list):
+        for task in task_name:
+            process_task(task)
+    else:
+        process_task(task_name)
