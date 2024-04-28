@@ -43,4 +43,9 @@ pip-delete-this-directory
 #venv
 zeroquant/
 
+# useless files
 .nfsdc8111e76e5cc4250000003e
+
+# result files
+logs.log
+results/
