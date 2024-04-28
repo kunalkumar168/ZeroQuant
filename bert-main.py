@@ -8,7 +8,7 @@ from tqdm import tqdm
 from torch.cuda.amp import autocast
 import json
 from compress import compress, fix_compression
-from utils import log_profiling_metrics, get_logger, write_quant_results_to_file
+from utils import log_profiling_metrics, get_logger, write_performance_results_to_file
 import argparse
 import time
 from copy import deepcopy
@@ -55,7 +55,7 @@ def main(model, quant_config, valid_dataloader, task_name, device, profiling_pat
     quantized_accuracy = evaluate(fixed_quantized_model, valid_dataloader, task_name, device, logger, profiling_path, model_name, is_quantized=True)
     logger.info('Accuracy after quantization: %s', quantized_accuracy)
     
-    write_quant_results_to_file(model_size, accuracy, quantized_size, quantized_accuracy, task_name, logger)
+    write_performance_results_to_file(model_name, model_size, accuracy, quantized_size, quantized_accuracy, task_name, logger)
 
 @torch.inference_mode()
 def evaluate(model, valid_dataloader, task_name, device, logger, profiling_path, model_name, is_quantized=False):
@@ -64,14 +64,14 @@ def evaluate(model, valid_dataloader, task_name, device, logger, profiling_path,
     metric = load_metric('glue', task_name, trust_remote_code=True)
     time_required = []
 
-    with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], record_shapes=False) as prof:
+    with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], profile_memory=True, record_shapes=False) as prof:
         for batch in tqdm(valid_dataloader):
             batch = {k: v.to(device) for k, v in batch.items()}
             start_time = time.time()
             with record_function("model_inference"):
                 logits = model(**batch).logits
             time_required.append(time.time() - start_time)
-            predictions = logits.argmax(dim=-1)
+            predictions = logits.argmax(dim=-1) if not is_regression else logits.squeeze()
             metric.add_batch(predictions=predictions, references=batch['labels'])
 
     log_profiling_metrics(prof, model_name, task_name, logger, file_path=profiling_path, is_quantized=is_quantized)
@@ -108,9 +108,7 @@ if __name__ == '__main__':
         labels = None
         num_labels = 1
 
-    num_labels = len(labels)
     config = AutoConfig.from_pretrained(model_name, num_labels=num_labels, finetuning_task=args.task_name)
-
     model = BertForSequenceClassification.from_pretrained(model_name, config=config, from_tf=False)
     tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
 
@@ -126,9 +124,9 @@ if __name__ == '__main__':
     if label_to_id is not None:
         model.config.label2id = label_to_id
         model.config.id2label = {id: label for label, id in config.label2id.items()}
-    else:
+    elif args.task_name is not None and not is_regression:
         model.config.label2id = { l: i for i, l in enumerate(labels)}
-        model.config.id2label = { i: l for i, l in enumerate(labels) }
+        model.config.id2label = {id: label for label, id in config.label2id.items()}
 
     def process(examples):
         texts = ((examples[sentence1_key],) if not sentence2_key else (examples[sentence1_key], examples[sentence2_key]))
