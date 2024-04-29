@@ -96,7 +96,7 @@ def process_task(task_name, model_name, profiling_path, logger):
     tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = model.to(device).half()
+    model = model.to(device)
     sentence1_key, sentence2_key = TASKS_TO_KEYS[task_name]
     label_to_id = None
 
