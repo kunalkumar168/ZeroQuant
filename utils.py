@@ -27,7 +27,7 @@ def write_profiling_results(prof, file_path, processor_type="cpu", profiling_typ
 
 def log_profiling_metrics(prof, model, task, logger, precision, file_path="profiling_results", is_quantized=False):
     currpath = os.path.abspath(os.curdir)
-    file_path = os.path.join(currpath, 'results', file_path, model, precision, task)
+    file_path = os.path.join(currpath, 'results', file_path, model, precision, task) if precision else os.path.join(currpath, 'results', file_path, model, task)
     if not os.path.exists(file_path):
         os.makedirs(file_path)
         
@@ -41,7 +41,7 @@ def log_profiling_metrics(prof, model, task, logger, precision, file_path="profi
 
 def write_performance_results_to_file(model_name, model_size, accuracy, quantized_size, quantized_accuracy, task_name, logger, precision):
     currpath = os.path.abspath(os.curdir)
-    results_dir = os.path.join(currpath, 'results', 'performance_results', model_name, precision)
+    results_dir = os.path.join(currpath, 'results', 'performance_results', model_name, precision) if precision else os.path.join(currpath, 'results', 'performance_results', model_name)
 
     os.makedirs(results_dir, exist_ok=True)
     file_path = os.path.join(results_dir, f'{task_name}.txt')
