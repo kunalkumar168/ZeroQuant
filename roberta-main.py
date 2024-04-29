@@ -1,11 +1,13 @@
 from transformers import RobertaTokenizer, RobertaForSequenceClassification, RobertaConfig, PretrainedConfig, default_data_collator, AdamW
 from datasets import load_dataset, load_metric
 import torch
+from torch.profiler import profile, record_function, ProfilerActivity
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from tqdm import tqdm
 from torch.cuda.amp import autocast
 import json
 from compress import compress, fix_compression
+from utils import log_profiling_metrics, get_logger, write_performance_results_to_file
 import argparse
 import time
 from copy import deepcopy
@@ -146,3 +148,41 @@ if __name__ == '__main__':
     )
 
     main(model_name, model, quant_config, valid_dataloader, args.task_name, device, is_regression)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='BERT quantization')
+    parser.add_argument('--model-name', type=str, default='bert-base-uncased', help='Model name')
+    parser.add_argument('--task-name', type=str, default=None, help='GLUE Task name')
+    parser.add_argument('--quant-config', type=str, default='bert_config.json', help='Quantization config file')
+    parser.add_argument('--profiling-path', type=str, default='profiling_results', help='Directory to save profiling results')
+    parser.add_argument('--logging-file-path', type=str, default='logs.log', help='Directory to save logs')
+    args = parser.parse_args()
+
+    parser = argparse.ArgumentParser(description='RoBERTa quantization')
+    parser.add_argument('--model-name', type=str, default='roberta-base', help='Model name')
+    parser.add_argument('--task-name', type=str, default='mnli', help='Task name')
+    parser.add_argument('--quant-config', type=str, default='bert_config.json', help='Quantization config file')
+    args = parser.parse_args()
+
+
+    quant_config = None
+    with open(args.quant_config, 'r') as f:
+        quant_config = json.load(f)
+ 
+    logger = get_logger(args.model_name, args.task_name, args.logging_file_path)
+    logger.info(f"Using quantization config from {args.quant_config} file.")
+
+
+    task_name = args.task_name
+    model_name = args.model_name
+    profiling_path = args.profiling_path
+
+    if not args.task_name:
+        task_name = list(TASKS_TO_KEYS.keys())
+
+    if isinstance(task_name, list):
+        for task in task_name:
+            process_task(task, model_name, profiling_path, logger)
+    else:
+        process_task(task_name, model_name, profiling_path, logger)

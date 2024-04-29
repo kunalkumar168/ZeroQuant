@@ -33,7 +33,7 @@ def get_memory_footprint(model):
     mem = mem_params + mem_bufs # in bytes
     return mem/(1e9)
 
-def main(model, quant_config, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression=False):
+def main(model, quant_config, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression=False, precision=None):
     logger.info('MODEL NAME: %s', model_name)
     logger.info('TASK NAME: %s', task_name)
     logger.info('DEVICE: %s', device)
@@ -41,7 +41,7 @@ def main(model, quant_config, valid_dataloader, task_name, model_name, device, l
     logger.info('Evaluating model before quantization...')
     old_model_size = get_memory_footprint(model)
     logger.info('Size before Quantization (GB): %s', old_model_size)
-    accuracy = evaluate(model, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression, is_quantized=False)
+    accuracy = evaluate(model, valid_dataloader, task_name, model_name, device, logger, profiling_path, precision, is_regression, is_quantized=False)
     logger.info('Accuracy before quantization: %s', accuracy)
 
     logger.info('Quantizing model...')
@@ -49,13 +49,13 @@ def main(model, quant_config, valid_dataloader, task_name, model_name, device, l
     quantized_size = get_memory_footprint(fixed_quantized_model)
     logger.info('Size after Quantization (GB): %s', quantized_size)
     logger.info('Compression ratio: %s', old_model_size / quantized_size)
-    quantized_accuracy = evaluate(fixed_quantized_model, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression, is_quantized=True)
+    quantized_accuracy = evaluate(fixed_quantized_model, valid_dataloader, task_name, model_name, device, logger, profiling_path, precision, is_regression, is_quantized=True)
     logger.info('Accuracy after quantization: %s', quantized_accuracy)
     
-    write_performance_results_to_file(model_name, old_model_size, accuracy, quantized_size, quantized_accuracy, task_name, logger)
+    write_performance_results_to_file(model_name, old_model_size, accuracy, quantized_size, quantized_accuracy, task_name, logger, precision)
 
 @torch.inference_mode()
-def evaluate(model, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression=False, is_quantized=False):
+def evaluate(model, valid_dataloader, task_name, model_name, device, logger, profiling_path, precision, is_regression=False, is_quantized=False):
     model.eval()
     metric = load_metric('glue', task_name, trust_remote_code=True)
     time_required = []
@@ -72,13 +72,13 @@ def evaluate(model, valid_dataloader, task_name, model_name, device, logger, pro
     eval_metrics = metric.compute()
     eval_metrics['average'] = np.mean(list(eval_metrics.values()))
 
-    log_profiling_metrics(prof, model_name, task_name, logger, file_path=profiling_path, is_quantized=is_quantized)
+    log_profiling_metrics(prof, model_name, task_name, logger, precision, file_path=profiling_path, is_quantized=is_quantized)
     logger.info('Average time taken for batch: %s', np.mean(time_required))
 
     return eval_metrics
 
 
-def process_task(task_name, model_name, profiling_path, logger):
+def process_task(task_name, model_name, profiling_path, logger, precision):
     model_path = f'yoshitomo-matsubara/{model_name}-{task_name}'
     raw_datasets = load_dataset("glue", task_name)
 
@@ -135,15 +135,15 @@ def process_task(task_name, model_name, profiling_path, logger):
                         batch_size=256
     )
 
-    main(model, quant_config, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression)
+    main(model, quant_config, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression, precision)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='BERT quantization')
     parser.add_argument('--model-name', type=str, default='bert-base-uncased', help='Model name')
     parser.add_argument('--task-name', type=str, default=None, help='GLUE Task name')
+    parser.add_argument('--precision', type=str, default='W8A8', help='Precision for quantization')
     parser.add_argument('--quant-config', type=str, default='bert_config.json', help='Quantization config file')
     parser.add_argument('--profiling-path', type=str, default='profiling_results', help='Directory to save profiling results')
-    parser.add_argument('--logging-file-path', type=str, default='logs.log', help='Directory to save logs')
     args = parser.parse_args()
 
 
@@ -151,12 +151,13 @@ if __name__ == '__main__':
     with open(args.quant_config, 'r') as f:
         quant_config = json.load(f)
  
-    logger = get_logger(args.model_name, args.task_name, args.logging_file_path)
+    logger = get_logger(args.model_name, args.task_name, args.precision)
     logger.info(f"Using quantization config from {args.quant_config} file.")
 
 
     task_name = args.task_name
     model_name = args.model_name
+    precision = args.precision
     profiling_path = args.profiling_path
 
     if not args.task_name:
@@ -164,6 +165,6 @@ if __name__ == '__main__':
 
     if isinstance(task_name, list):
         for task in task_name:
-            process_task(task, model_name, profiling_path, logger)
+            process_task(task, model_name, profiling_path, logger, precision)
     else:
-        process_task(task_name, model_name, profiling_path, logger)
+        process_task(task_name, model_name, profiling_path, logger, precision)
