@@ -11,6 +11,6 @@ for task in "${GLUE[@]}"
 do
     rm -rf ./"$MODEL-$task"
     git clone https://huggingface.co/PavanNeerudu/"$MODEL-$task"
-    python gpt2-main.py --model-name $MODEL --task-name $task --quant-config quant_configs/roberta_config.json
+    python gpt2-main.py --model-name $MODEL --task-name $task --quant-config quant_configs/roberta_base_config.json
     rm -rf ./"$MODEL-$task"
 done

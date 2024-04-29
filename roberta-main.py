@@ -167,10 +167,6 @@ if __name__ == '__main__':
     precision = args.precision
     profiling_path = args.profiling_path
 
-    task_name = args.task_name
-    model_name = args.model_name
-    profiling_path = args.profiling_path
-
     if not args.task_name:
         task_name = list(TASKS_TO_KEYS.keys())
 
