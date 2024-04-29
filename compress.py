@@ -44,7 +44,7 @@ def get_quantization_params(model, quantize_params):
                 for module_name in module_names:
                     module_list.append(module_name)
             if module_list:
-                group_compress_params = shared_parameters
+                group_compress_params = shared_parameters.copy()
                 group_compress_params.update(group_params['params'])
 
                 compress_params.append([
