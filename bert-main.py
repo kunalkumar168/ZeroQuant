@@ -14,6 +14,7 @@ import numpy as np
 ACC_TASKS = ["mnli", "mrpc", "sst2", "qqp", "qnli", "rte"]
 
 TASKS_TO_KEYS = {
+    "stsb": ("sentence1", "sentence2"),
     "cola": ("sentence", None),
     "mnli": ("premise", "hypothesis"),
     "mrpc": ("sentence1", "sentence2"),
@@ -21,16 +22,15 @@ TASKS_TO_KEYS = {
     "qqp": ("question1", "question2"),
     "rte": ("sentence1", "sentence2"),
     "sst2": ("sentence", None),
-    "stsb": ("sentence1", "sentence2"),
-    "wnli": ("sentence1", "sentence2"),
+    "wnli": ("sentence1", "sentence2")
 }
 
-def main(model, quant_config, valid_dataloader, task_name, device):
+def main(model, quant_config, valid_dataloader, task_name, device, is_regression=False):
 
-    print('Processing task name:', task_name)
+    print('Processing task:', task_name)
     old_model_size = model.get_memory_footprint()
     print('Size before Quantization', old_model_size)
-    print('Accuracy before quantization', evaluate(model, valid_dataloader, task_name, device))
+    print('Accuracy before quantization', evaluate(model, valid_dataloader, task_name, device, is_regression))
 
     # qunatized_model = compress(model, quant_config)
 
@@ -42,11 +42,13 @@ def main(model, quant_config, valid_dataloader, task_name, device):
     print('Size after Quantization', quant_model_size)
     print('Compression ratio:', old_model_size / quant_model_size)
 
-    print('Accuracy after quantization', evaluate(fixed_quantized_model, valid_dataloader, task_name, device))
+    print('Accuracy after quantization', evaluate(fixed_quantized_model, valid_dataloader, task_name, device, is_regression))
 
-    
+    print('-----' * 20)
+    print('\n' * 20)
+
 @torch.inference_mode()
-def evaluate(model, valid_dataloader, task_name, device):
+def evaluate(model, valid_dataloader, task_name, device, is_regression=False):
     model.eval()
     metric = load_metric('glue', task_name, trust_remote_code=True)
     time_required = []
@@ -55,7 +57,7 @@ def evaluate(model, valid_dataloader, task_name, device):
         start_time = time.time()
         logits = model(**batch).logits
         time_required.append(time.time() - start_time)
-        predictions = logits.argmax(dim=-1)
+        predictions = logits.argmax(dim=-1) if not is_regression else logits.squeeze()
         metric.add_batch(predictions=predictions, references=batch['labels'])
     print('Average time taken for batch:', np.mean(time_required))
     eval_metrics = metric.compute()
@@ -65,7 +67,7 @@ def evaluate(model, valid_dataloader, task_name, device):
 def process_task(task_name):
     task_name = task_name
     raw_datasets = load_dataset("glue", task_name)
-    model_name = f'yoshitomo-matsubara/bert-base-uncased-{task_name}'
+    model_name = f'yoshitomo-matsubara/bert-large-uncased-{task_name}'
 
     is_regression = task_name == "stsb"
     if not is_regression:
@@ -75,7 +77,6 @@ def process_task(task_name):
         labels = None
         num_labels = 1
 
-    num_labels = len(labels)
     config = AutoConfig.from_pretrained(model_name, num_labels=num_labels, finetuning_task=task_name)
 
     model = BertForSequenceClassification.from_pretrained(model_name, config=config, from_tf=False)
@@ -93,7 +94,7 @@ def process_task(task_name):
     if label_to_id is not None:
         model.config.label2id = label_to_id
         model.config.id2label = {id: label for label, id in config.label2id.items()}
-    else:
+    elif task_name is not None and not is_regression:
         model.config.label2id = { l: i for i, l in enumerate(labels)}
         model.config.id2label = { i: l for i, l in enumerate(labels) }
 
@@ -121,7 +122,7 @@ def process_task(task_name):
                         batch_size=256
     )
 
-    main(model, quant_config, valid_dataloader, task_name, device)
+    main(model, quant_config, valid_dataloader, task_name, device, is_regression)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='BERT quantization')
