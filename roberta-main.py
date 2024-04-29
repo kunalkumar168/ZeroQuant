@@ -45,7 +45,7 @@ def main(model_name, model, quant_config, valid_dataloader, task_name, device, i
     print('Accuracy after quantization', quantized_accuracy)
     
     currpath = os.path.abspath(os.curdir)
-    with open(os.path.join(f'{currpath}/results', f'roberta-base-{task_name}.txt'), 'w') as f:
+    with open(os.path.join(f'{currpath}/results', f'{model_name}-{task_name}.txt'), 'w') as f:
         f.write(f"Size before Quantization (GB) : {model_size}\n")
         f.write(f"Accuracy before quantization : {accuracy}\n")
         f.write(f"-----------------------------------\n")
