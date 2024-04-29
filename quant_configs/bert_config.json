@@ -1,4 +1,7 @@
 {
+    "model": {
+        "name": "bert-base"
+    },
     "weight_quantization": {
         "shared_parameters": {
           "enabled": true,
