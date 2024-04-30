@@ -54,11 +54,21 @@ def main(model, quant_config, valid_dataloader, task_name, model_name, device, l
     
     write_performance_results_to_file(model_name, old_model_size, accuracy, quantized_size, quantized_accuracy, task_name, logger, precision)
 
+def warmup_run(model, valid_dataloader, device):
+    warmup_num = 1
+    for _ in range(warmup_num):
+        for batch in tqdm(valid_dataloader):
+            batch = {k: v.to(device) for k, v in batch.items()}
+            with torch.no_grad():
+                _ = model(**batch)
+        
+    
 @torch.inference_mode()
 def evaluate(model, valid_dataloader, task_name, model_name, device, logger, profiling_path, precision, is_regression=False, is_quantized=False):
     model.eval()
     metric = load_metric('glue', task_name, trust_remote_code=True)
     time_required = []
+    warmup_run(model, valid_dataloader, device)
     with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA], profile_memory=True, record_shapes=False) as prof:
         for batch in tqdm(valid_dataloader):
             batch = {k: v.to(device) for k, v in batch.items()}
@@ -96,7 +106,7 @@ def process_task(task_name, model_name, profiling_path, logger, precision):
     tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = model.to(device)
+    model = model.to(device).half()
     sentence1_key, sentence2_key = TASKS_TO_KEYS[task_name]
     label_to_id = None
 
