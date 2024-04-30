@@ -1,18 +1,18 @@
-2024-04-29 23:19:30,635 - INFO - Using quantization config from quant_configs/roberta_base_config_W8A8.json file.
-2024-04-29 23:19:37,039 - INFO - MODEL NAME: roberta-base
-2024-04-29 23:19:37,039 - INFO - TASK NAME: rte
-2024-04-29 23:19:37,039 - INFO - DEVICE: cuda
-2024-04-29 23:19:37,039 - INFO - Evaluating model before quantization...
-2024-04-29 23:19:37,040 - INFO - Size before Quantization (GB): 0.498596904
-2024-04-29 23:19:38,292 - INFO - Profiling results...
-2024-04-29 23:19:38,647 - INFO - Profiling results for roberta-base and rte are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/rte folder.
-2024-04-29 23:19:38,647 - INFO - Average time taken for batch: 0.402911901473999
-2024-04-29 23:19:38,647 - INFO - Accuracy before quantization: {'accuracy': 0.7581227436823105, 'average': 0.7581227436823105}
-2024-04-29 23:19:38,647 - INFO - Quantizing model...
-2024-04-29 23:19:38,705 - INFO - Size after Quantization (GB): 0.127982376
-2024-04-29 23:19:38,706 - INFO - Compression ratio: 3.8958247188659785
-2024-04-29 23:19:39,890 - INFO - Profiling results...
-2024-04-29 23:19:40,719 - INFO - Profiling results for roberta-base and rte are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/rte folder.
-2024-04-29 23:19:40,720 - INFO - Average time taken for batch: 0.01925790309906006
-2024-04-29 23:19:40,720 - INFO - Accuracy after quantization: {'accuracy': 0.7472924187725631, 'average': 0.7472924187725631}
-2024-04-29 23:19:40,724 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-base/rte.txt
+2024-04-30 06:18:48,674 - INFO - Using quantization config from quant_configs/roberta_base_config_W8A8.json file.
+2024-04-30 06:18:55,018 - INFO - MODEL NAME: roberta-base
+2024-04-30 06:18:55,018 - INFO - TASK NAME: rte
+2024-04-30 06:18:55,018 - INFO - DEVICE: cuda
+2024-04-30 06:18:55,018 - INFO - Evaluating model before quantization...
+2024-04-30 06:18:55,019 - INFO - Size before Quantization (GB): 0.249302564
+2024-04-30 06:18:55,999 - INFO - Profiling results...
+2024-04-30 06:18:56,365 - INFO - Profiling results for roberta-base and rte are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/rte folder.
+2024-04-30 06:18:56,365 - INFO - Average time taken for batch: 0.007429361343383789
+2024-04-30 06:18:56,365 - INFO - Accuracy before quantization: {'accuracy': 0.7581227436823105, 'average': 0.7581227436823105}
+2024-04-30 06:18:56,365 - INFO - Quantizing model...
+2024-04-30 06:18:56,420 - INFO - Size after Quantization (GB): 0.125764388
+2024-04-30 06:18:56,420 - INFO - Compression ratio: 1.9822985502064383
+2024-04-30 06:18:57,423 - INFO - Profiling results...
+2024-04-30 06:18:58,259 - INFO - Profiling results for roberta-base and rte are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/rte folder.
+2024-04-30 06:18:58,260 - INFO - Average time taken for batch: 0.019074320793151855
+2024-04-30 06:18:58,260 - INFO - Accuracy after quantization: {'accuracy': 0.7472924187725631, 'average': 0.7472924187725631}
+2024-04-30 06:18:58,264 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-base/rte.txt
