@@ -1,5 +1,0 @@
-Size before Quantization (GB) : 0.510348336
-Accuracy before quantization : {'matthews_correlation': 0.43544209947737617}
------------------------------------
-Size after Quantization (GB): 0.510348336
-Accuracy after quantization : {'matthews_correlation': 0.43544209947737617}

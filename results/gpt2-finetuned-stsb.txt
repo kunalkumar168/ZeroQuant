@@ -1,5 +1,0 @@
-Size before Quantization (GB) : 0.510345264
-Accuracy before quantization : {'pearson': 0.27366463319862544, 'spearmanr': 0.2516576218464916}
------------------------------------
-Size after Quantization (GB): 0.510345264
-Accuracy after quantization : {'pearson': 0.27366463319862544, 'spearmanr': 0.2516576218464916}
