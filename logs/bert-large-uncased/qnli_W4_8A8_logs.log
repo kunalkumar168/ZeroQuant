@@ -1,18 +1,18 @@
-2024-04-29 21:24:48,419 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W4_8A8.json file.
-2024-04-29 21:24:55,203 - INFO - MODEL NAME: bert-large-uncased
-2024-04-29 21:24:55,204 - INFO - TASK NAME: qnli
-2024-04-29 21:24:55,204 - INFO - DEVICE: cuda
-2024-04-29 21:24:55,204 - INFO - Evaluating model before quantization...
-2024-04-29 21:24:55,205 - INFO - Size before Quantization (GB): 1.340583944
-2024-04-29 21:25:25,703 - INFO - Profiling results...
-2024-04-29 21:25:32,777 - INFO - Profiling results for bert-large-uncased and qnli are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-large-uncased/W4_8A8/qnli folder.
-2024-04-29 21:25:32,777 - INFO - Average time taken for batch: 0.08113358237526634
-2024-04-29 21:25:32,778 - INFO - Accuracy before quantization: {'accuracy': 0.9223869668680212, 'average': 0.9223869668680212}
-2024-04-29 21:25:32,778 - INFO - Quantizing model...
-2024-04-29 21:25:32,874 - INFO - Size after Quantization (GB): 0.227604488
-2024-04-29 21:25:32,875 - INFO - Compression ratio: 5.889971484217834
-2024-04-29 21:26:17,943 - INFO - Profiling results...
-2024-04-29 21:26:39,355 - INFO - Profiling results for bert-large-uncased and qnli are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-large-uncased/W4_8A8/qnli folder.
-2024-04-29 21:26:39,355 - INFO - Average time taken for batch: 0.7848029136657715
-2024-04-29 21:26:39,356 - INFO - Accuracy after quantization: {'accuracy': 0.9157971810360608, 'average': 0.9157971810360608}
-2024-04-29 21:26:39,362 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/bert-large-uncased/qnli.txt
+2024-04-30 06:01:32,000 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W4_8A8.json file.
+2024-04-30 06:02:10,397 - INFO - MODEL NAME: bert-large-uncased
+2024-04-30 06:02:10,398 - INFO - TASK NAME: qnli
+2024-04-30 06:02:10,398 - INFO - DEVICE: cuda
+2024-04-30 06:02:10,398 - INFO - Evaluating model before quantization...
+2024-04-30 06:02:10,402 - INFO - Size before Quantization (GB): 0.670296068
+2024-04-30 06:02:25,493 - INFO - Profiling results...
+2024-04-30 06:02:35,841 - INFO - Profiling results for bert-large-uncased and qnli are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W4_8A8/qnli folder.
+2024-04-30 06:02:35,842 - INFO - Average time taken for batch: 0.022222703153436833
+2024-04-30 06:02:35,842 - INFO - Accuracy before quantization: {'accuracy': 0.9223869668680212, 'average': 0.9223869668680212}
+2024-04-30 06:02:35,842 - INFO - Quantizing model...
+2024-04-30 06:02:35,974 - INFO - Size after Quantization (GB): 0.223805444
+2024-04-30 06:02:35,974 - INFO - Compression ratio: 2.9949944738609666
+2024-04-30 06:03:07,026 - INFO - Profiling results...
+2024-04-30 06:03:37,352 - INFO - Profiling results for bert-large-uncased and qnli are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W4_8A8/qnli folder.
+2024-04-30 06:03:37,352 - INFO - Average time taken for batch: 0.16641947356137363
+2024-04-30 06:03:37,353 - INFO - Accuracy after quantization: {'accuracy': 0.9145158337909574, 'average': 0.9145158337909574}
+2024-04-30 06:03:37,360 - INFO - Quantization results are saved at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/performance_results/bert-large-uncased/qnli.txt

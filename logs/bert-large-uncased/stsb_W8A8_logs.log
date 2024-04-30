@@ -1,18 +1,18 @@
-2024-04-29 21:34:39,694 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W8A8.json file.
-2024-04-29 21:34:46,131 - INFO - MODEL NAME: bert-large-uncased
-2024-04-29 21:34:46,131 - INFO - TASK NAME: stsb
-2024-04-29 21:34:46,131 - INFO - DEVICE: cuda
-2024-04-29 21:34:46,131 - INFO - Evaluating model before quantization...
-2024-04-29 21:34:46,133 - INFO - Size before Quantization (GB): 1.340579844
-2024-04-29 21:34:54,996 - INFO - Profiling results...
-2024-04-29 21:34:56,941 - INFO - Profiling results for bert-large-uncased and stsb are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-large-uncased/W8A8/stsb folder.
-2024-04-29 21:34:56,941 - INFO - Average time taken for batch: 0.2668476502100627
-2024-04-29 21:34:56,942 - INFO - Accuracy before quantization: {'pearson': 0.9034249230034154, 'spearmanr': 0.9010518274302421, 'average': 0.9022383752168288}
-2024-04-29 21:34:56,942 - INFO - Quantizing model...
-2024-04-29 21:34:57,020 - INFO - Size after Quantization (GB): 0.340846596
-2024-04-29 21:34:57,020 - INFO - Compression ratio: 3.933088549900026
-2024-04-29 21:35:08,676 - INFO - Profiling results...
-2024-04-29 21:35:13,478 - INFO - Profiling results for bert-large-uncased and stsb are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-large-uncased/W8A8/stsb folder.
-2024-04-29 21:35:13,479 - INFO - Average time taken for batch: 0.6237755219141642
-2024-04-29 21:35:13,479 - INFO - Accuracy after quantization: {'pearson': 0.9036091351153571, 'spearmanr': 0.9008189785153092, 'average': 0.9022140568153332}
-2024-04-29 21:35:13,483 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/bert-large-uncased/stsb.txt
+2024-04-30 04:39:08,344 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W8A8.json file.
+2024-04-30 04:39:14,342 - INFO - MODEL NAME: bert-large-uncased
+2024-04-30 04:39:14,343 - INFO - TASK NAME: stsb
+2024-04-30 04:39:14,343 - INFO - DEVICE: cuda
+2024-04-30 04:39:14,343 - INFO - Evaluating model before quantization...
+2024-04-30 04:39:14,348 - INFO - Size before Quantization (GB): 0.670294018
+2024-04-30 04:39:25,586 - INFO - Profiling results...
+2024-04-30 04:39:28,997 - INFO - Profiling results for bert-large-uncased and stsb are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W8A8/stsb folder.
+2024-04-30 04:39:28,997 - INFO - Average time taken for batch: 0.022379954655965168
+2024-04-30 04:39:28,998 - INFO - Accuracy before quantization: {'pearson': 0.9034352912731184, 'spearmanr': 0.9010555001574696, 'average': 0.902245395715294}
+2024-04-30 04:39:28,998 - INFO - Quantizing model...
+2024-04-30 04:39:29,120 - INFO - Size after Quantization (GB): 0.337049602
+2024-04-30 04:39:29,120 - INFO - Compression ratio: 1.9887103085794475
+2024-04-30 04:39:37,336 - INFO - Profiling results...
+2024-04-30 04:39:44,591 - INFO - Profiling results for bert-large-uncased and stsb are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W8A8/stsb folder.
+2024-04-30 04:39:44,592 - INFO - Average time taken for batch: 0.13153719902038574
+2024-04-30 04:39:44,592 - INFO - Accuracy after quantization: {'pearson': 0.9036533914762966, 'spearmanr': 0.9007744289182894, 'average': 0.902213910197293}
+2024-04-30 04:39:44,658 - INFO - Quantization results are saved at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/performance_results/bert-large-uncased/stsb.txt

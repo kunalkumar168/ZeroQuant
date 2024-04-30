@@ -1,18 +1,18 @@
-2024-04-29 21:30:35,087 - INFO - Using quantization config from quant_configs/bert_base_uncased_config_W4_8A8.json file.
-2024-04-29 21:30:39,931 - INFO - MODEL NAME: bert-base-uncased
-2024-04-29 21:30:39,931 - INFO - TASK NAME: rte
-2024-04-29 21:30:39,931 - INFO - DEVICE: cuda
-2024-04-29 21:30:39,931 - INFO - Evaluating model before quantization...
-2024-04-29 21:30:39,932 - INFO - Size before Quantization (GB): 0.437943304
-2024-04-29 21:30:41,133 - INFO - Profiling results...
-2024-04-29 21:30:41,513 - INFO - Profiling results for bert-base-uncased and rte are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-base-uncased/W4_8A8/rte folder.
-2024-04-29 21:30:41,514 - INFO - Average time taken for batch: 0.35596609115600586
-2024-04-29 21:30:41,514 - INFO - Accuracy before quantization: {'accuracy': 0.6750902527075813, 'average': 0.6750902527075813}
-2024-04-29 21:30:41,514 - INFO - Quantizing model...
-2024-04-29 21:30:41,587 - INFO - Size after Quantization (GB): 0.080966152
-2024-04-29 21:30:41,587 - INFO - Compression ratio: 5.408967737530617
-2024-04-29 21:30:43,037 - INFO - Profiling results...
-2024-04-29 21:30:44,039 - INFO - Profiling results for bert-base-uncased and rte are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-base-uncased/W4_8A8/rte folder.
-2024-04-29 21:30:44,039 - INFO - Average time taken for batch: 0.0508495569229126
-2024-04-29 21:30:44,039 - INFO - Accuracy after quantization: {'accuracy': 0.5018050541516246, 'average': 0.5018050541516246}
-2024-04-29 21:30:44,044 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/bert-base-uncased/rte.txt
+2024-04-30 06:07:05,071 - INFO - Using quantization config from quant_configs/bert_base_uncased_config_W4_8A8.json file.
+2024-04-30 06:07:12,966 - INFO - MODEL NAME: bert-base-uncased
+2024-04-30 06:07:12,967 - INFO - TASK NAME: rte
+2024-04-30 06:07:12,967 - INFO - DEVICE: cuda
+2024-04-30 06:07:12,967 - INFO - Evaluating model before quantization...
+2024-04-30 06:07:12,968 - INFO - Size before Quantization (GB): 0.218975748
+2024-04-30 06:07:15,805 - INFO - Profiling results...
+2024-04-30 06:07:16,331 - INFO - Profiling results for bert-base-uncased and rte are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-base-uncased/W4_8A8/rte folder.
+2024-04-30 06:07:16,331 - INFO - Average time taken for batch: 0.01230466365814209
+2024-04-30 06:07:16,331 - INFO - Accuracy before quantization: {'accuracy': 0.6714801444043321, 'average': 0.6714801444043321}
+2024-04-30 06:07:16,331 - INFO - Quantizing model...
+2024-04-30 06:07:16,427 - INFO - Size after Quantization (GB): 0.0787497
+2024-04-30 06:07:16,427 - INFO - Compression ratio: 2.780655012019093
+2024-04-30 06:07:17,850 - INFO - Profiling results...
+2024-04-30 06:07:19,299 - INFO - Profiling results for bert-base-uncased and rte are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-base-uncased/W4_8A8/rte folder.
+2024-04-30 06:07:19,299 - INFO - Average time taken for batch: 0.04090738296508789
+2024-04-30 06:07:19,299 - INFO - Accuracy after quantization: {'accuracy': 0.5018050541516246, 'average': 0.5018050541516246}
+2024-04-30 06:07:19,304 - INFO - Quantization results are saved at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/performance_results/bert-base-uncased/rte.txt

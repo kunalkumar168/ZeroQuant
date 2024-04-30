@@ -1,3 +1,18 @@
-2024-04-29 21:23:21,900 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W8A8.json file.
-2024-04-29 21:23:22,633 - WARNING - Using the latest cached version of the dataset since glue couldn't be found on the Hugging Face Hub
-2024-04-29 21:23:22,637 - WARNING - Found the latest cached dataset configuration 'sst2' at /home/saishradhamo_umass_edu/.cache/huggingface/datasets/glue/sst2/0.0.0/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c (last modified on Mon Apr 29 19:13:32 2024).
+2024-04-30 04:54:12,336 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W8A8.json file.
+2024-04-30 04:54:18,596 - INFO - MODEL NAME: bert-large-uncased
+2024-04-30 04:54:18,596 - INFO - TASK NAME: sst2
+2024-04-30 04:54:18,597 - INFO - DEVICE: cuda
+2024-04-30 04:54:18,597 - INFO - Evaluating model before quantization...
+2024-04-30 04:54:18,606 - INFO - Size before Quantization (GB): 0.670296068
+2024-04-30 04:54:26,980 - INFO - Profiling results...
+2024-04-30 04:54:29,734 - INFO - Profiling results for bert-large-uncased and sst2 are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W8A8/sst2 folder.
+2024-04-30 04:54:29,734 - INFO - Average time taken for batch: 0.022008657455444336
+2024-04-30 04:54:29,734 - INFO - Accuracy before quantization: {'accuracy': 0.9346330275229358, 'average': 0.9346330275229358}
+2024-04-30 04:54:29,735 - INFO - Quantizing model...
+2024-04-30 04:54:29,842 - INFO - Size after Quantization (GB): 0.337051652
+2024-04-30 04:54:29,842 - INFO - Compression ratio: 1.9887042950912461
+2024-04-30 04:54:35,297 - INFO - Profiling results...
+2024-04-30 04:54:40,925 - INFO - Profiling results for bert-large-uncased and sst2 are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W8A8/sst2 folder.
+2024-04-30 04:54:40,926 - INFO - Average time taken for batch: 0.1171501874923706
+2024-04-30 04:54:40,927 - INFO - Accuracy after quantization: {'accuracy': 0.9311926605504587, 'average': 0.9311926605504587}
+2024-04-30 04:54:41,018 - INFO - Quantization results are saved at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/performance_results/bert-large-uncased/sst2.txt
