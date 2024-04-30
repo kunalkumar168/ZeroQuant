@@ -3,6 +3,7 @@ import torch.nn as nn
 from fix_quantizer import SymQuantizer, SymDequantizer
 import torch.nn.functional as F
 from quantizer import QuantSym, StaticQuantActivation
+from transformers.pytorch_utils import Conv1D
 
 quant_weight_mappings = {}
 
@@ -97,3 +98,46 @@ class FixQuantizedEmbedding(nn.Embedding):
 
         return F.embedding(x, temp_dequantized_weight, self.padding_idx, self.max_norm, self.norm_type,
                            self.scale_grad_by_freq, self.sparse)
+    
+
+class FixQuantizedConv1D(Conv1D):
+    def __init__(self, bits, pre_quant_layer, group_num=1, quant_type='symmetric'):
+        super(FixQuantizedConv1D, self).__init__(
+            nf=pre_quant_layer.nf,
+            nx=pre_quant_layer.weight.shape[0]
+        )
+        self.bits = bits
+        self.group_num = group_num
+        self.quantizer = get_quantizer(quant_type, bits, group_num)
+        self.weight, self.scale = get_quant_weight_wrapper(pre_quant_layer.weight, self.quantizer)
+        self.bias = pre_quant_layer.bias
+        self.weight.dequantizer = get_dequantizer(quant_type, pre_quant_layer.weight.dtype, pre_quant_layer.weight.shape, bits)
+        self.activation_quant_enabled = False
+
+    def enable_activation_quantization(self, quant_bits, quant_type='symmetric', calibration='dynamic'):
+        self.activation_quant_bits = quant_bits
+        self.activation_quant_method = calibration
+        self.activation_quant_enabled = True
+
+        if calibration == 'static':
+            self.activation_quantizer = StaticQuantActivation(quantization_type=quant_type)
+        else:
+            if quant_type == 'symmetric':
+                self.activation_quantizer = QuantSym.apply
+            else:
+                raise NotImplementedError
+
+    def forward(self, x):
+        temp_dequantized_weight = self.weight.dequantizer.dequantize(self.weight, self.scale)
+        if self.activation_quant_enabled:
+            num_groups = None
+            if self.activation_quant_method == 'dynamic':
+                num_groups = x.numel() // x.shape[-1]
+            else:
+                num_groups = 1
+            x = self.activation_quantizer(x, self.activation_quant_bits, None, None, num_groups)
+
+        size_out = x.size()[:-1] + (self.nf,)
+        x = torch.addmm(self.bias, x.view(-1, x.size(-1)), temp_dequantized_weight)
+        x = x.view(size_out)
+        return x
