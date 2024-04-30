@@ -1,0 +1,55 @@
+{
+    "weight_quantization": {
+        "shared_parameters": {
+          "enabled": true,
+          "quantizer_kernel": false,
+          "schedule_offset": 0,
+          "quantize_groups": 128,
+          "quantize_verbose": true,
+          "quantization_type": "symmetric",
+          "quantize_weight_in_forward": true,
+          "rounding": "nearest",
+          "fp16_mixed_quantize": {
+            "enabled": false,
+            "quantize_change_ratio": 0.1
+          }
+        },
+        "different_groups": {
+          "wq1": {
+            "params": {
+              "start_bits": 8,
+              "target_bits": 8,
+              "quantization_period": 0
+            },
+            "modules": [
+                "self_attn",
+                "fc1",
+                "fc2"
+            ]
+          }
+        }
+      },
+
+
+    "activation_quantization": {
+        "shared_parameters": {
+          "enabled": true,
+          "quantization_type": "symmetric",
+          "range_calibration": "dynamic",
+          "schedule_offset": 0
+        },
+        "different_groups": {
+          "aq1": {
+            "params": {
+              "bits": 8
+            },
+            "modules": [
+              "self_attn",
+              "fc1",
+              "fc2"
+            ]
+          }
+        }
+    }
+      
+}

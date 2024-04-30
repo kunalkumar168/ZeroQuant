@@ -2,7 +2,9 @@ import torch
 import torch.nn as nn
 import re
 from layers import QuantLinear, QuantEmbedding
-from quantized_layers import FixQuantizedLinear, FixQuantizedEmbedding
+from quantized_layers import FixQuantizedLinear, FixQuantizedEmbedding, FixQuantizedConv1D
+from transformers.pytorch_utils import Conv1D
+
 
 def recursive_get_module(model, module_name):
     split_module_name = module_name.split('.')
@@ -21,7 +23,8 @@ def recursive_set_module(model, module_name, new_module):
 
 def is_valid(module):
     return isinstance(module, nn.Linear) \
-              or isinstance(module, nn.Embedding)
+              or isinstance(module, nn.Embedding) \
+              or isinstance(module,  Conv1D)
 
 def get_module_names(model, module_name):
     module_names = []
@@ -125,6 +128,8 @@ def quantized_module_replacement(model, module_name, compress_params):
 
         elif isinstance(old_module, nn.Embedding) or isinstance(old_module, QuantEmbedding):
             new_module = FixQuantizedEmbedding(weight_quantization_params['target_bits'], old_module, weight_quantization_params['quantize_groups'], weight_quantization_params['quantization_type'])
+        elif isinstance(old_module, Conv1D):
+            new_module = FixQuantizedConv1D(weight_quantization_params['target_bits'], old_module, weight_quantization_params['quantize_groups'], weight_quantization_params['quantization_type'])
 
     activation_quantization_params = compress_params.get('activation_quantization', {})
    
