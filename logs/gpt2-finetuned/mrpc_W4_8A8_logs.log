@@ -1,0 +1,18 @@
+2024-04-29 23:37:38,111 - INFO - Using quantization config from quant_configs/gpt2_finetuned_config_W4_8A8.json file.
+2024-04-29 23:37:43,217 - INFO - MODEL NAME: gpt2-finetuned
+2024-04-29 23:37:43,217 - INFO - TASK NAME: mrpc
+2024-04-29 23:37:43,217 - INFO - DEVICE: cuda
+2024-04-29 23:37:43,217 - INFO - Evaluating model before quantization...
+2024-04-29 23:37:43,218 - INFO - Size before Quantization (GB): 0.510348336
+2024-04-29 23:37:45,074 - INFO - Profiling results...
+2024-04-29 23:37:45,454 - INFO - Profiling results for gpt2-finetuned and mrpc are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/gpt2-finetuned/mrpc folder.
+2024-04-29 23:37:45,454 - INFO - Average time taken for batch: 0.5362198352813721
+2024-04-29 23:37:45,455 - INFO - Accuracy before quantization: {'accuracy': 0.6274509803921569, 'f1': 0.7639751552795031, 'average': 0.69571306783583}
+2024-04-29 23:37:45,455 - INFO - Quantizing model...
+2024-04-29 23:37:45,456 - INFO - Size after Quantization (GB): 0.510348336
+2024-04-29 23:37:45,456 - INFO - Compression ratio: 1.0
+2024-04-29 23:37:46,413 - INFO - Profiling results...
+2024-04-29 23:37:46,779 - INFO - Profiling results for gpt2-finetuned and mrpc are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/gpt2-finetuned/mrpc folder.
+2024-04-29 23:37:46,779 - INFO - Average time taken for batch: 0.3099023103713989
+2024-04-29 23:37:46,779 - INFO - Accuracy after quantization: {'accuracy': 0.6274509803921569, 'f1': 0.7639751552795031, 'average': 0.69571306783583}
+2024-04-29 23:37:46,783 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/gpt2-finetuned/mrpc.txt

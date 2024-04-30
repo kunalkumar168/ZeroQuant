@@ -1,0 +1,18 @@
+2024-04-29 21:58:07,883 - INFO - Using quantization config from quant_configs/roberta_large_config_W8A8.json file.
+2024-04-29 21:58:17,318 - INFO - MODEL NAME: roberta-large
+2024-04-29 21:58:17,319 - INFO - TASK NAME: mrpc
+2024-04-29 21:58:17,319 - INFO - DEVICE: cuda
+2024-04-29 21:58:17,319 - INFO - Evaluating model before quantization...
+2024-04-29 21:58:17,321 - INFO - Size before Quantization (GB): 1.4214554
+2024-04-29 21:58:20,374 - INFO - Profiling results...
+2024-04-29 21:58:21,040 - INFO - Profiling results for roberta-large and mrpc are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/mrpc folder.
+2024-04-29 21:58:21,041 - INFO - Average time taken for batch: 0.8049106597900391
+2024-04-29 21:58:21,041 - INFO - Accuracy before quantization: {'accuracy': 0.8799019607843137, 'f1': 0.9126559714795008, 'average': 0.8962789661319073}
+2024-04-29 21:58:21,041 - INFO - Quantizing model...
+2024-04-29 21:58:21,118 - INFO - Size after Quantization (GB): 0.361071656
+2024-04-29 21:58:21,118 - INFO - Compression ratio: 3.9367681632700626
+2024-04-29 21:58:24,767 - INFO - Profiling results...
+2024-04-29 21:58:26,443 - INFO - Profiling results for roberta-large and mrpc are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/mrpc folder.
+2024-04-29 21:58:26,443 - INFO - Average time taken for batch: 0.5110522508621216
+2024-04-29 21:58:26,443 - INFO - Accuracy after quantization: {'accuracy': 0.8823529411764706, 'f1': 0.9151943462897526, 'average': 0.8987736437331115}
+2024-04-29 21:58:26,447 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-large/mrpc.txt

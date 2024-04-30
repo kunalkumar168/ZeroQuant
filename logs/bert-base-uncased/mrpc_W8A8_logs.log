@@ -1,0 +1,18 @@
+2024-04-29 21:06:00,521 - INFO - Using quantization config from quant_configs/bert_base_uncased_config_W8A8.json file.
+2024-04-29 21:06:05,160 - INFO - MODEL NAME: bert-base-uncased
+2024-04-29 21:06:05,161 - INFO - TASK NAME: mrpc
+2024-04-29 21:06:05,161 - INFO - DEVICE: cuda
+2024-04-29 21:06:05,161 - INFO - Evaluating model before quantization...
+2024-04-29 21:06:05,162 - INFO - Size before Quantization (GB): 0.437943304
+2024-04-29 21:06:06,548 - INFO - Profiling results...
+2024-04-29 21:06:06,916 - INFO - Profiling results for bert-base-uncased and mrpc are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-base-uncased/W8A8/mrpc folder.
+2024-04-29 21:06:06,916 - INFO - Average time taken for batch: 0.36486291885375977
+2024-04-29 21:06:06,917 - INFO - Accuracy before quantization: {'accuracy': 0.8725490196078431, 'f1': 0.9068100358422939, 'average': 0.8896795277250685}
+2024-04-29 21:06:06,917 - INFO - Quantizing model...
+2024-04-29 21:06:06,971 - INFO - Size after Quantization (GB): 0.112816648
+2024-04-29 21:06:06,971 - INFO - Compression ratio: 3.881903174432199
+2024-04-29 21:06:08,517 - INFO - Profiling results...
+2024-04-29 21:06:09,356 - INFO - Profiling results for bert-base-uncased and mrpc are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-base-uncased/W8A8/mrpc folder.
+2024-04-29 21:06:09,356 - INFO - Average time taken for batch: 0.018863558769226074
+2024-04-29 21:06:09,356 - INFO - Accuracy after quantization: {'accuracy': 0.8700980392156863, 'f1': 0.9051878354203935, 'average': 0.8876429373180399}
+2024-04-29 21:06:09,371 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/bert-base-uncased/mrpc.txt

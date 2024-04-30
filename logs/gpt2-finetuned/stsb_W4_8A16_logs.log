@@ -1,0 +1,18 @@
+2024-04-30 00:06:15,818 - INFO - Using quantization config from quant_configs/gpt2_finetuned_config_W4_8A16.json file.
+2024-04-30 00:06:20,521 - INFO - MODEL NAME: gpt2-finetuned
+2024-04-30 00:06:20,521 - INFO - TASK NAME: stsb
+2024-04-30 00:06:20,521 - INFO - DEVICE: cuda
+2024-04-30 00:06:20,522 - INFO - Evaluating model before quantization...
+2024-04-30 00:06:20,522 - INFO - Size before Quantization (GB): 0.510345264
+2024-04-30 00:06:24,505 - INFO - Profiling results...
+2024-04-30 00:06:25,520 - INFO - Profiling results for gpt2-finetuned and stsb are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/gpt2-finetuned/stsb folder.
+2024-04-30 00:06:25,520 - INFO - Average time taken for batch: 0.4581262270609538
+2024-04-30 00:06:25,520 - INFO - Accuracy before quantization: {'pearson': 0.27366463319862544, 'spearmanr': 0.2516576218464916, 'average': 0.26266112752255855}
+2024-04-30 00:06:25,520 - INFO - Quantizing model...
+2024-04-30 00:06:25,522 - INFO - Size after Quantization (GB): 0.510345264
+2024-04-30 00:06:25,522 - INFO - Compression ratio: 1.0
+2024-04-30 00:06:28,715 - INFO - Profiling results...
+2024-04-30 00:06:29,729 - INFO - Profiling results for gpt2-finetuned and stsb are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/gpt2-finetuned/stsb folder.
+2024-04-30 00:06:29,729 - INFO - Average time taken for batch: 0.3848330577214559
+2024-04-30 00:06:29,729 - INFO - Accuracy after quantization: {'pearson': 0.27366463319862544, 'spearmanr': 0.2516576218464916, 'average': 0.26266112752255855}
+2024-04-30 00:06:29,732 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/gpt2-finetuned/stsb.txt

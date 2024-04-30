@@ -1,0 +1,18 @@
+2024-04-30 00:03:51,115 - INFO - Using quantization config from quant_configs/gpt2_finetuned_config_W4_8A16.json file.
+2024-04-30 00:03:55,679 - INFO - MODEL NAME: gpt2-finetuned
+2024-04-30 00:03:55,679 - INFO - TASK NAME: qnli
+2024-04-30 00:03:55,679 - INFO - DEVICE: cuda
+2024-04-30 00:03:55,679 - INFO - Evaluating model before quantization...
+2024-04-30 00:03:55,680 - INFO - Size before Quantization (GB): 0.510348336
+2024-04-30 00:04:07,524 - INFO - Profiling results...
+2024-04-30 00:04:11,192 - INFO - Profiling results for gpt2-finetuned and qnli are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/gpt2-finetuned/qnli folder.
+2024-04-30 00:04:11,192 - INFO - Average time taken for batch: 0.3944885730743408
+2024-04-30 00:04:11,193 - INFO - Accuracy before quantization: {'accuracy': 0.8694856306058942, 'average': 0.8694856306058942}
+2024-04-30 00:04:11,193 - INFO - Quantizing model...
+2024-04-30 00:04:11,195 - INFO - Size after Quantization (GB): 0.510348336
+2024-04-30 00:04:11,195 - INFO - Compression ratio: 1.0
+2024-04-30 00:04:22,577 - INFO - Profiling results...
+2024-04-30 00:04:26,327 - INFO - Profiling results for gpt2-finetuned and qnli are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/gpt2-finetuned/qnli folder.
+2024-04-30 00:04:26,327 - INFO - Average time taken for batch: 0.37832890857349744
+2024-04-30 00:04:26,328 - INFO - Accuracy after quantization: {'accuracy': 0.8694856306058942, 'average': 0.8694856306058942}
+2024-04-30 00:04:26,331 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/gpt2-finetuned/qnli.txt
