@@ -1,6 +1,7 @@
 #!/bin/bash
 
-GLUE=("cola" "mrpc" "mnli" "sst2" "qqp" "qnli" "rte" "stsb" "wnli")
+#GLUE=("cola" "mrpc" "mnli" "stsb" "sst2" "qqp" "qnli" "rte" "wnli")
+GLUE=("sst2" "qqp" "qnli" "rte" "wnli")
 PRECISIONS=("W4_8A8" "W4_8A16" "W8A8")
 MODELS=("roberta-base" "roberta-large")
 

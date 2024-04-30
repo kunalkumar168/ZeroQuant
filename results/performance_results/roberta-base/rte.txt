@@ -1,5 +1,5 @@
-Size before Quantization (GB) : 0.498596904
+Size before Quantization (GB) : 0.249302564
 Accuracy before quantization : {'accuracy': 0.7581227436823105, 'average': 0.7581227436823105}
 -----------------------------------
-Size after Quantization (GB): 0.127982376
+Size after Quantization (GB): 0.125764388
 Accuracy after quantization : {'accuracy': 0.7472924187725631, 'average': 0.7472924187725631}
