@@ -1,0 +1,18 @@
+2024-05-15 04:03:29,300 - INFO - Using quantization config from quant_configs/roberta_base_config_W4_8A8.json file.
+2024-05-15 04:04:06,353 - INFO - MODEL NAME: roberta-base
+2024-05-15 04:04:06,353 - INFO - TASK NAME: qnli
+2024-05-15 04:04:06,353 - INFO - DEVICE: cuda
+2024-05-15 04:04:06,353 - INFO - Evaluating model before quantization...
+2024-05-15 04:04:06,354 - INFO - Size before Quantization (GB): 0.249302564
+2024-05-15 04:04:47,648 - INFO - Profiling results...
+2024-05-15 04:04:51,410 - INFO - Profiling results for roberta-base and qnli are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/W4_8A8/qnli folder.
+2024-05-15 04:04:51,410 - INFO - Average time taken for batch: 0.00695911320773038
+2024-05-15 04:04:51,410 - INFO - Accuracy before quantization: {'accuracy': 0.9152480322167308, 'average': 0.9152480322167308}
+2024-05-15 04:04:51,410 - INFO - Quantizing model...
+2024-05-15 04:04:51,485 - INFO - Size after Quantization (GB): 0.093913892
+2024-05-15 04:04:51,485 - INFO - Compression ratio: 2.654586650503208
+2024-05-15 04:05:03,467 - INFO - Profiling results...
+2024-05-15 04:05:14,122 - INFO - Profiling results for roberta-base and qnli are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/W4_8A8/qnli folder.
+2024-05-15 04:05:14,123 - INFO - Average time taken for batch: 0.02390167929909446
+2024-05-15 04:05:14,123 - INFO - Accuracy after quantization: {'accuracy': 0.7148087131612667, 'average': 0.7148087131612667}
+2024-05-15 04:05:14,127 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-base/qnli.txt

@@ -1,18 +1,6 @@
-2024-04-30 05:40:10,603 - INFO - Using quantization config from quant_configs/roberta_base_config_W8A8.json file.
-2024-04-30 05:40:17,439 - INFO - MODEL NAME: roberta-base
-2024-04-30 05:40:17,440 - INFO - TASK NAME: qqp
-2024-04-30 05:40:17,440 - INFO - DEVICE: cuda
-2024-04-30 05:40:17,440 - INFO - Evaluating model before quantization...
-2024-04-30 05:40:17,441 - INFO - Size before Quantization (GB): 0.249302564
-2024-04-30 05:40:54,602 - INFO - Profiling results...
-2024-04-30 05:41:21,990 - INFO - Profiling results for roberta-base and qqp are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/qqp folder.
-2024-04-30 05:41:21,991 - INFO - Average time taken for batch: 0.007493772084199929
-2024-04-30 05:41:21,991 - INFO - Accuracy before quantization: {'accuracy': 0.9013356418501113, 'f1': 0.8666822632933391, 'average': 0.8840089525717252}
-2024-04-30 05:41:21,991 - INFO - Quantizing model...
-2024-04-30 05:41:22,043 - INFO - Size after Quantization (GB): 0.125764388
-2024-04-30 05:41:22,044 - INFO - Compression ratio: 1.9822985502064383
-2024-04-30 05:42:40,133 - INFO - Profiling results...
-2024-04-30 05:43:44,504 - INFO - Profiling results for roberta-base and qqp are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/qqp folder.
-2024-04-30 05:43:44,504 - INFO - Average time taken for batch: 0.019515244266654873
-2024-04-30 05:43:44,505 - INFO - Accuracy after quantization: {'accuracy': 0.9013851100667821, 'f1': 0.8681067848754507, 'average': 0.8847459474711163}
-2024-04-30 05:43:44,513 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-base/qqp.txt
+2024-04-30 19:14:32,511 - INFO - Using quantization config from quant_configs/roberta_base_config_W8A8.json file.
+2024-04-30 19:14:41,188 - INFO - MODEL NAME: roberta-base
+2024-04-30 19:14:41,189 - INFO - TASK NAME: qqp
+2024-04-30 19:14:41,189 - INFO - DEVICE: cuda
+2024-04-30 19:14:41,189 - INFO - Evaluating model before quantization...
+2024-04-30 19:14:41,190 - INFO - Size before Quantization (GB): 0.249302564

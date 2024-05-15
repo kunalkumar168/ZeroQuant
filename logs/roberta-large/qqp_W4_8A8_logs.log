@@ -1,0 +1,18 @@
+2024-05-15 03:35:17,272 - INFO - Using quantization config from quant_configs/roberta_large_config_W4_8A8.json file.
+2024-05-15 03:37:31,596 - INFO - MODEL NAME: roberta-large
+2024-05-15 03:37:31,596 - INFO - TASK NAME: qqp
+2024-05-15 03:37:31,596 - INFO - DEVICE: cuda
+2024-05-15 03:37:31,596 - INFO - Evaluating model before quantization...
+2024-05-15 03:37:31,598 - INFO - Size before Quantization (GB): 0.710731812
+2024-05-15 03:38:59,677 - INFO - Profiling results...
+2024-05-15 03:39:53,037 - INFO - Profiling results for roberta-large and qqp are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/W4_8A8/qqp folder.
+2024-05-15 03:39:53,037 - INFO - Average time taken for batch: 0.013179620610007757
+2024-05-15 03:39:53,037 - INFO - Accuracy before quantization: {'accuracy': 0.9214692060351224, 'f1': 0.8959459902336708, 'average': 0.9087075981343966}
+2024-05-15 03:39:53,037 - INFO - Quantizing model...
+2024-05-15 03:39:53,134 - INFO - Size after Quantization (GB): 0.244024356
+2024-05-15 03:39:53,134 - INFO - Compression ratio: 2.912544565838338
+2024-05-15 03:43:36,577 - INFO - Profiling results...
+2024-05-15 03:46:14,105 - INFO - Profiling results for roberta-large and qqp are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/W4_8A8/qqp folder.
+2024-05-15 03:46:14,106 - INFO - Average time taken for batch: 0.17030967338175712
+2024-05-15 03:46:14,106 - INFO - Accuracy after quantization: {'accuracy': 0.7864951768488746, 'f1': 0.6683571538343323, 'average': 0.7274261653416034}
+2024-05-15 03:46:14,110 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-large/qqp.txt

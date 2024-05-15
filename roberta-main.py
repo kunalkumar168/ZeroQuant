@@ -34,7 +34,7 @@ def get_memory_footprint(model):
     mem = mem_params + mem_bufs # in bytes
     return mem/(1e9)
 
-def main(model, quant_config, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression=False, precision=None):
+def main(model, quant_config, valid_dataloader, task_name, model_name, device, logger, profiling_path, precision, is_regression=False):
     logger.info('MODEL NAME: %s', model_name)
     logger.info('TASK NAME: %s', task_name)
     logger.info('DEVICE: %s', device)
@@ -91,7 +91,7 @@ def evaluate(model, valid_dataloader, task_name, model_name, device, logger, pro
 
     return eval_metrics
 
-def process_task(task_name, model_name, profiling_path, logger):
+def process_task(task_name, model_name, profiling_path, logger, precision):
     currpath = os.path.abspath(os.curdir)
     model_path = f'{currpath}/{model_name}-{task_name}'
     raw_datasets = load_dataset("glue", task_name)
@@ -148,7 +148,7 @@ def process_task(task_name, model_name, profiling_path, logger):
                         batch_size=256
     )
 
-    main(model, quant_config, valid_dataloader, task_name, model_name, device, logger, profiling_path, is_regression)
+    main(model, quant_config, valid_dataloader, task_name, model_name, device, logger, profiling_path, precision, is_regression)
 
 
 
@@ -179,8 +179,8 @@ if __name__ == '__main__':
 
     if isinstance(task_name, list):
         for task in task_name:
-            process_task(task, model_name, profiling_path, logger)
+            process_task(task, model_name, profiling_path, logger, precision)
     else:
-        process_task(task_name, model_name, profiling_path, logger)
+        process_task(task_name, model_name, profiling_path, logger, precision)
 
     

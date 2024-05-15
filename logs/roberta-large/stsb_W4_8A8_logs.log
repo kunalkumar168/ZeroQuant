@@ -1,0 +1,18 @@
+2024-05-15 03:14:56,396 - INFO - Using quantization config from quant_configs/roberta_large_config_W4_8A8.json file.
+2024-05-15 03:15:09,303 - INFO - MODEL NAME: roberta-large
+2024-05-15 03:15:09,304 - INFO - TASK NAME: stsb
+2024-05-15 03:15:09,304 - INFO - DEVICE: cuda
+2024-05-15 03:15:09,304 - INFO - Evaluating model before quantization...
+2024-05-15 03:15:09,305 - INFO - Size before Quantization (GB): 0.710729762
+2024-05-15 03:15:13,016 - INFO - Profiling results...
+2024-05-15 03:15:15,017 - INFO - Profiling results for roberta-large and stsb are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/W4_8A8/stsb folder.
+2024-05-15 03:15:15,017 - INFO - Average time taken for batch: 0.013147791226704916
+2024-05-15 03:15:15,017 - INFO - Accuracy before quantization: {'pearson': 0.918222579154153, 'spearmanr': 0.9169922262780492, 'average': 0.9176074027161011}
+2024-05-15 03:15:15,017 - INFO - Quantizing model...
+2024-05-15 03:15:15,128 - INFO - Size after Quantization (GB): 0.244022306
+2024-05-15 03:15:15,128 - INFO - Compression ratio: 2.9125606328791926
+2024-05-15 03:15:22,574 - INFO - Profiling results...
+2024-05-15 03:15:28,427 - INFO - Profiling results for roberta-large and stsb are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/W4_8A8/stsb folder.
+2024-05-15 03:15:28,427 - INFO - Average time taken for batch: 0.1664626200993856
+2024-05-15 03:15:28,427 - INFO - Accuracy after quantization: {'pearson': 0.7407403220288311, 'spearmanr': 0.7597161584547673, 'average': 0.7502282402417992}
+2024-05-15 03:15:28,432 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-large/stsb.txt

@@ -1,0 +1,18 @@
+2024-05-15 04:15:02,455 - INFO - Using quantization config from quant_configs/roberta_large_config_W4_8A16.json file.
+2024-05-15 04:15:11,467 - INFO - MODEL NAME: roberta-large
+2024-05-15 04:15:11,468 - INFO - TASK NAME: rte
+2024-05-15 04:15:11,468 - INFO - DEVICE: cuda
+2024-05-15 04:15:11,468 - INFO - Evaluating model before quantization...
+2024-05-15 04:15:11,472 - INFO - Size before Quantization (GB): 0.710731812
+2024-05-15 04:15:13,126 - INFO - Profiling results...
+2024-05-15 04:15:13,816 - INFO - Profiling results for roberta-large and rte are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/W4_8A16/rte folder.
+2024-05-15 04:15:13,817 - INFO - Average time taken for batch: 0.01346135139465332
+2024-05-15 04:15:13,817 - INFO - Accuracy before quantization: {'accuracy': 0.7870036101083032, 'average': 0.7870036101083032}
+2024-05-15 04:15:13,817 - INFO - Quantizing model...
+2024-05-15 04:15:13,925 - INFO - Size after Quantization (GB): 0.244024356
+2024-05-15 04:15:13,925 - INFO - Compression ratio: 2.912544565838338
+2024-05-15 04:15:15,926 - INFO - Profiling results...
+2024-05-15 04:15:17,927 - INFO - Profiling results for roberta-large and rte are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/W4_8A16/rte folder.
+2024-05-15 04:15:17,927 - INFO - Average time taken for batch: 0.11031484603881836
+2024-05-15 04:15:17,927 - INFO - Accuracy after quantization: {'accuracy': 0.4729241877256318, 'average': 0.4729241877256318}
+2024-05-15 04:15:17,930 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-large/rte.txt

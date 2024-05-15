@@ -1,0 +1,18 @@
+2024-05-15 03:17:20,753 - INFO - Using quantization config from quant_configs/roberta_base_config_W4_8A16.json file.
+2024-05-15 03:17:27,254 - INFO - MODEL NAME: roberta-base
+2024-05-15 03:17:27,254 - INFO - TASK NAME: sst2
+2024-05-15 03:17:27,254 - INFO - DEVICE: cuda
+2024-05-15 03:17:27,254 - INFO - Evaluating model before quantization...
+2024-05-15 03:17:27,255 - INFO - Size before Quantization (GB): 0.249302564
+2024-05-15 03:17:28,813 - INFO - Profiling results...
+2024-05-15 03:17:29,522 - INFO - Profiling results for roberta-base and sst2 are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/W4_8A16/sst2 folder.
+2024-05-15 03:17:29,522 - INFO - Average time taken for batch: 0.006735026836395264
+2024-05-15 03:17:29,522 - INFO - Accuracy before quantization: {'accuracy': 0.9323394495412844, 'average': 0.9323394495412844}
+2024-05-15 03:17:29,522 - INFO - Quantizing model...
+2024-05-15 03:17:29,598 - INFO - Size after Quantization (GB): 0.093913892
+2024-05-15 03:17:29,598 - INFO - Compression ratio: 2.654586650503208
+2024-05-15 03:17:31,672 - INFO - Profiling results...
+2024-05-15 03:17:33,665 - INFO - Profiling results for roberta-base and sst2 are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/W4_8A16/sst2 folder.
+2024-05-15 03:17:33,665 - INFO - Average time taken for batch: 0.023398280143737793
+2024-05-15 03:17:33,665 - INFO - Accuracy after quantization: {'accuracy': 0.7442660550458715, 'average': 0.7442660550458715}
+2024-05-15 03:17:33,669 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-base/sst2.txt

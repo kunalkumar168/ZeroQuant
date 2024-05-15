@@ -1,18 +1,18 @@
-2024-04-30 05:29:29,620 - INFO - Using quantization config from quant_configs/roberta_large_config_W8A8.json file.
-2024-04-30 05:29:39,285 - INFO - MODEL NAME: roberta-large
-2024-04-30 05:29:39,285 - INFO - TASK NAME: sst2
-2024-04-30 05:29:39,285 - INFO - DEVICE: cuda
-2024-04-30 05:29:39,286 - INFO - Evaluating model before quantization...
-2024-04-30 05:29:39,288 - INFO - Size before Quantization (GB): 0.710731812
-2024-04-30 05:29:43,075 - INFO - Profiling results...
-2024-04-30 05:29:44,649 - INFO - Profiling results for roberta-large and sst2 are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/sst2 folder.
-2024-04-30 05:29:44,649 - INFO - Average time taken for batch: 0.013129711151123047
-2024-04-30 05:29:44,649 - INFO - Accuracy before quantization: {'accuracy': 0.963302752293578, 'average': 0.963302752293578}
-2024-04-30 05:29:44,649 - INFO - Quantizing model...
-2024-04-30 05:29:44,725 - INFO - Size after Quantization (GB): 0.357270564
-2024-04-30 05:29:44,726 - INFO - Compression ratio: 1.989337727806761
-2024-04-30 05:29:49,018 - INFO - Profiling results...
-2024-04-30 05:29:52,574 - INFO - Profiling results for roberta-large and sst2 are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/sst2 folder.
-2024-04-30 05:29:52,574 - INFO - Average time taken for batch: 0.1170089840888977
-2024-04-30 05:29:52,574 - INFO - Accuracy after quantization: {'accuracy': 0.9598623853211009, 'average': 0.9598623853211009}
-2024-04-30 05:29:52,634 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-large/sst2.txt
+2024-04-30 16:33:31,464 - INFO - Using quantization config from quant_configs/roberta_large_config_W8A8.json file.
+2024-04-30 16:33:43,863 - INFO - MODEL NAME: roberta-large
+2024-04-30 16:33:43,863 - INFO - TASK NAME: sst2
+2024-04-30 16:33:43,863 - INFO - DEVICE: cuda
+2024-04-30 16:33:43,863 - INFO - Evaluating model before quantization...
+2024-04-30 16:33:43,867 - INFO - Size before Quantization (GB): 0.710731812
+2024-04-30 16:35:23,555 - INFO - Profiling results...
+2024-04-30 16:35:25,834 - INFO - Profiling results for roberta-large and sst2 are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/sst2 folder.
+2024-04-30 16:35:25,834 - INFO - Average time taken for batch: 0.03575336933135986
+2024-04-30 16:35:25,834 - INFO - Accuracy before quantization: {'accuracy': 0.963302752293578, 'average': 0.963302752293578}
+2024-04-30 16:35:25,834 - INFO - Quantizing model...
+2024-04-30 16:35:25,993 - INFO - Size after Quantization (GB): 0.357270564
+2024-04-30 16:35:25,993 - INFO - Compression ratio: 1.989337727806761
+2024-04-30 16:38:08,587 - INFO - Profiling results...
+2024-04-30 16:38:14,255 - INFO - Profiling results for roberta-large and sst2 are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-large/sst2 folder.
+2024-04-30 16:38:14,255 - INFO - Average time taken for batch: 9.041628420352936
+2024-04-30 16:38:14,255 - INFO - Accuracy after quantization: {'accuracy': 0.9610091743119266, 'average': 0.9610091743119266}
+2024-04-30 16:38:14,259 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-large/sst2.txt

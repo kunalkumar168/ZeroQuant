@@ -1,5 +1,5 @@
 Size before Quantization (GB) : 0.710729762
-Accuracy before quantization : {'pearson': 0.918222579154153, 'spearmanr': 0.9169922262780492, 'average': 0.9176074027161011}
+Accuracy before quantization : {'pearson': 0.9182087016014004, 'spearmanr': 0.9169754748007186, 'average': 0.9175920882010595}
 -----------------------------------
-Size after Quantization (GB): 0.357268514
-Accuracy after quantization : {'pearson': 0.9162220483509855, 'spearmanr': 0.9152789696314023, 'average': 0.9157505089911939}
+Size after Quantization (GB): 0.244022306
+Accuracy after quantization : {'pearson': 0.7851218092010549, 'spearmanr': 0.803320514615805, 'average': 0.79422116190843}

@@ -1,0 +1,18 @@
+2024-05-15 02:53:21,683 - INFO - Using quantization config from quant_configs/roberta_base_config_W4_8A16.json file.
+2024-05-15 02:53:28,156 - INFO - MODEL NAME: roberta-base
+2024-05-15 02:53:28,157 - INFO - TASK NAME: cola
+2024-05-15 02:53:28,157 - INFO - DEVICE: cuda
+2024-05-15 02:53:28,157 - INFO - Evaluating model before quantization...
+2024-05-15 02:53:28,158 - INFO - Size before Quantization (GB): 0.249302564
+2024-05-15 02:53:33,448 - INFO - Profiling results...
+2024-05-15 02:53:34,366 - INFO - Profiling results for roberta-base and cola are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/W4_8A16/cola folder.
+2024-05-15 02:53:34,366 - INFO - Average time taken for batch: 0.007098340988159179
+2024-05-15 02:53:34,366 - INFO - Accuracy before quantization: {'matthews_correlation': 0.5960380981891474, 'average': 0.5960380981891474}
+2024-05-15 02:53:34,366 - INFO - Quantizing model...
+2024-05-15 02:53:34,450 - INFO - Size after Quantization (GB): 0.093913892
+2024-05-15 02:53:34,450 - INFO - Compression ratio: 2.654586650503208
+2024-05-15 02:53:37,144 - INFO - Profiling results...
+2024-05-15 02:53:39,610 - INFO - Profiling results for roberta-base and cola are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/roberta-base/W4_8A16/cola folder.
+2024-05-15 02:53:39,610 - INFO - Average time taken for batch: 0.024032974243164064
+2024-05-15 02:53:39,610 - INFO - Accuracy after quantization: {'matthews_correlation': 0.0, 'average': 0.0}
+2024-05-15 02:53:39,618 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/roberta-base/cola.txt
