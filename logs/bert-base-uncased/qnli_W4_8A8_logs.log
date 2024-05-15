@@ -1,3 +1,18 @@
-2024-04-29 21:23:50,555 - INFO - Using quantization config from quant_configs/bert_base_uncased_config_W4_8A8.json file.
-2024-04-29 21:23:50,605 - WARNING - Using the latest cached version of the dataset since glue couldn't be found on the Hugging Face Hub
-2024-04-29 21:23:50,609 - WARNING - Found the latest cached dataset configuration 'qnli' at /home/saishradhamo_umass_edu/.cache/huggingface/datasets/glue/qnli/0.0.0/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c (last modified on Mon Apr 29 20:16:08 2024).
+2024-04-30 05:58:17,246 - INFO - Using quantization config from quant_configs/bert_base_uncased_config_W4_8A8.json file.
+2024-04-30 05:58:48,292 - INFO - MODEL NAME: bert-base-uncased
+2024-04-30 05:58:48,292 - INFO - TASK NAME: qnli
+2024-04-30 05:58:48,293 - INFO - DEVICE: cuda
+2024-04-30 05:58:48,293 - INFO - Evaluating model before quantization...
+2024-04-30 05:58:48,294 - INFO - Size before Quantization (GB): 0.218975748
+2024-04-30 05:58:57,194 - INFO - Profiling results...
+2024-04-30 05:59:02,592 - INFO - Profiling results for bert-base-uncased and qnli are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-base-uncased/W4_8A8/qnli folder.
+2024-04-30 05:59:02,592 - INFO - Average time taken for batch: 0.01202037117697976
+2024-04-30 05:59:02,593 - INFO - Accuracy before quantization: {'accuracy': 0.9157971810360608, 'average': 0.9157971810360608}
+2024-04-30 05:59:02,593 - INFO - Quantizing model...
+2024-04-30 05:59:02,686 - INFO - Size after Quantization (GB): 0.0787497
+2024-04-30 05:59:02,686 - INFO - Compression ratio: 2.780655012019093
+2024-04-30 05:59:18,189 - INFO - Profiling results...
+2024-04-30 05:59:33,460 - INFO - Profiling results for bert-base-uncased and qnli are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-base-uncased/W4_8A8/qnli folder.
+2024-04-30 05:59:33,460 - INFO - Average time taken for batch: 0.04115849191492254
+2024-04-30 05:59:33,460 - INFO - Accuracy after quantization: {'accuracy': 0.9046311550430166, 'average': 0.9046311550430166}
+2024-04-30 05:59:33,471 - INFO - Quantization results are saved at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/performance_results/bert-base-uncased/qnli.txt

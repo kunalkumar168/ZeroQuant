@@ -1,18 +1,20 @@
-2024-04-29 21:32:13,364 - INFO - Using quantization config from quant_configs/bert_base_uncased_config_W4_8A8.json file.
-2024-04-29 21:32:18,087 - INFO - MODEL NAME: bert-base-uncased
-2024-04-29 21:32:18,087 - INFO - TASK NAME: stsb
-2024-04-29 21:32:18,087 - INFO - DEVICE: cuda
-2024-04-29 21:32:18,087 - INFO - Evaluating model before quantization...
-2024-04-29 21:32:18,088 - INFO - Size before Quantization (GB): 0.437940228
-2024-04-29 21:32:21,630 - INFO - Profiling results...
-2024-04-29 21:32:22,688 - INFO - Profiling results for bert-base-uncased and stsb are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-base-uncased/W4_8A8/stsb folder.
-2024-04-29 21:32:22,689 - INFO - Average time taken for batch: 0.15238436063130698
-2024-04-29 21:32:22,689 - INFO - Accuracy before quantization: {'pearson': 0.8888202090685149, 'spearmanr': 0.8855402259919775, 'average': 0.8871802175302461}
-2024-04-29 21:32:22,689 - INFO - Quantizing model...
-2024-04-29 21:32:22,764 - INFO - Size after Quantization (GB): 0.080963076
-2024-04-29 21:32:22,765 - INFO - Compression ratio: 5.409135245800197
-2024-04-29 21:32:27,718 - INFO - Profiling results...
-2024-04-29 21:32:30,655 - INFO - Profiling results for bert-base-uncased and stsb are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-base-uncased/W4_8A8/stsb folder.
-2024-04-29 21:32:30,655 - INFO - Average time taken for batch: 0.07818758487701416
-2024-04-29 21:32:30,655 - INFO - Accuracy after quantization: {'pearson': 0.8744675777032543, 'spearmanr': 0.8764011093728145, 'average': 0.8754343435380344}
-2024-04-29 21:32:30,662 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/bert-base-uncased/stsb.txt
+2024-04-30 04:34:14,758 - INFO - Using quantization config from quant_configs/bert_base_uncased_config_W4_8A8.json file.
+2024-04-30 04:34:15,098 - WARNING - Using the latest cached version of the dataset since glue couldn't be found on the Hugging Face Hub
+2024-04-30 04:34:15,106 - WARNING - Found the latest cached dataset configuration 'stsb' at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/datasets/glue/stsb/0.0.0/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c (last modified on Sun Apr 28 23:50:03 2024).
+2024-04-30 04:34:54,115 - INFO - MODEL NAME: bert-base-uncased
+2024-04-30 04:34:54,115 - INFO - TASK NAME: stsb
+2024-04-30 04:34:54,115 - INFO - DEVICE: cuda
+2024-04-30 04:34:54,115 - INFO - Evaluating model before quantization...
+2024-04-30 04:34:54,116 - INFO - Size before Quantization (GB): 0.21897421
+2024-04-30 04:34:59,227 - INFO - Profiling results...
+2024-04-30 04:35:00,933 - INFO - Profiling results for bert-base-uncased and stsb are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-base-uncased/W4_8A8/stsb folder.
+2024-04-30 04:35:00,933 - INFO - Average time taken for batch: 0.013046820958455404
+2024-04-30 04:35:00,934 - INFO - Accuracy before quantization: {'pearson': 0.8888145318147592, 'spearmanr': 0.885540198978672, 'average': 0.8871773653967157}
+2024-04-30 04:35:00,934 - INFO - Quantizing model...
+2024-04-30 04:35:01,032 - INFO - Size after Quantization (GB): 0.078748162
+2024-04-30 04:35:01,032 - INFO - Compression ratio: 2.780689789305813
+2024-04-30 04:35:05,670 - INFO - Profiling results...
+2024-04-30 04:35:10,111 - INFO - Profiling results for bert-base-uncased and stsb are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-base-uncased/W4_8A8/stsb folder.
+2024-04-30 04:35:10,111 - INFO - Average time taken for batch: 0.040789524714152016
+2024-04-30 04:35:10,111 - INFO - Accuracy after quantization: {'pearson': 0.874044849204957, 'spearmanr': 0.8754984673950587, 'average': 0.8747716583000078}
+2024-04-30 04:35:10,128 - INFO - Quantization results are saved at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/performance_results/bert-base-uncased/stsb.txt

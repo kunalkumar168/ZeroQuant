@@ -1,18 +1,18 @@
-2024-04-29 21:05:00,649 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W8A8.json file.
-2024-04-29 21:05:07,143 - INFO - MODEL NAME: bert-large-uncased
-2024-04-29 21:05:07,144 - INFO - TASK NAME: cola
-2024-04-29 21:05:07,144 - INFO - DEVICE: cuda
-2024-04-29 21:05:07,144 - INFO - Evaluating model before quantization...
-2024-04-29 21:05:07,145 - INFO - Size before Quantization (GB): 1.340583944
-2024-04-29 21:05:13,809 - INFO - Profiling results...
-2024-04-29 21:05:15,417 - INFO - Profiling results for bert-large-uncased and cola are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-large-uncased/W8A8/cola folder.
-2024-04-29 21:05:15,417 - INFO - Average time taken for batch: 0.3408038139343262
-2024-04-29 21:05:15,417 - INFO - Accuracy before quantization: {'matthews_correlation': 0.6335324951654004, 'average': 0.6335324951654004}
-2024-04-29 21:05:15,417 - INFO - Quantizing model...
-2024-04-29 21:05:15,495 - INFO - Size after Quantization (GB): 0.340850696
-2024-04-29 21:05:15,495 - INFO - Compression ratio: 3.933053268578334
-2024-04-29 21:05:24,260 - INFO - Profiling results...
-2024-04-29 21:05:28,372 - INFO - Profiling results for bert-large-uncased and cola are saved in /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/profiling_results/bert-large-uncased/W8A8/cola folder.
-2024-04-29 21:05:28,372 - INFO - Average time taken for batch: 0.5228324890136719
-2024-04-29 21:05:28,372 - INFO - Accuracy after quantization: {'matthews_correlation': 0.6244089124554926, 'average': 0.6244089124554926}
-2024-04-29 21:05:28,385 - INFO - Quantization results are saved at /work/pi_annagreen_umass_edu/saishradha/systems-for-dl/Kunal_zeroq/results/performance_results/bert-large-uncased/cola.txt
+2024-04-30 04:16:58,706 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W8A8.json file.
+2024-04-30 04:17:03,895 - INFO - MODEL NAME: bert-large-uncased
+2024-04-30 04:17:03,895 - INFO - TASK NAME: cola
+2024-04-30 04:17:03,895 - INFO - DEVICE: cuda
+2024-04-30 04:17:03,895 - INFO - Evaluating model before quantization...
+2024-04-30 04:17:03,897 - INFO - Size before Quantization (GB): 0.670296068
+2024-04-30 04:17:08,811 - INFO - Profiling results...
+2024-04-30 04:17:11,257 - INFO - Profiling results for bert-large-uncased and cola are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W8A8/cola folder.
+2024-04-30 04:17:11,257 - INFO - Average time taken for batch: 0.022627639770507812
+2024-04-30 04:17:11,257 - INFO - Accuracy before quantization: {'matthews_correlation': 0.6335324951654004, 'average': 0.6335324951654004}
+2024-04-30 04:17:11,257 - INFO - Quantizing model...
+2024-04-30 04:17:11,361 - INFO - Size after Quantization (GB): 0.337051652
+2024-04-30 04:17:11,361 - INFO - Compression ratio: 1.9887042950912461
+2024-04-30 04:17:17,935 - INFO - Profiling results...
+2024-04-30 04:17:23,766 - INFO - Profiling results for bert-large-uncased and cola are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W8A8/cola folder.
+2024-04-30 04:17:23,766 - INFO - Average time taken for batch: 0.12154312133789062
+2024-04-30 04:17:23,766 - INFO - Accuracy after quantization: {'matthews_correlation': 0.6373665354852156, 'average': 0.6373665354852156}
+2024-04-30 04:17:23,776 - INFO - Quantization results are saved at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/performance_results/bert-large-uncased/cola.txt

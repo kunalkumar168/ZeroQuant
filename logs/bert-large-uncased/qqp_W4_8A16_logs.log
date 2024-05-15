@@ -1,3 +1,18 @@
-2024-04-29 21:23:42,039 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W4_8A16.json file.
-2024-04-29 21:23:42,094 - WARNING - Using the latest cached version of the dataset since glue couldn't be found on the Hugging Face Hub
-2024-04-29 21:23:42,099 - WARNING - Found the latest cached dataset configuration 'qqp' at /home/saishradhamo_umass_edu/.cache/huggingface/datasets/glue/qqp/0.0.0/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c (last modified on Mon Apr 29 19:57:00 2024).
+2024-04-30 05:37:01,007 - INFO - Using quantization config from quant_configs/bert_large_uncased_config_W4_8A16.json file.
+2024-04-30 05:37:23,584 - INFO - MODEL NAME: bert-large-uncased
+2024-04-30 05:37:23,585 - INFO - TASK NAME: qqp
+2024-04-30 05:37:23,585 - INFO - DEVICE: cuda
+2024-04-30 05:37:23,585 - INFO - Evaluating model before quantization...
+2024-04-30 05:37:23,587 - INFO - Size before Quantization (GB): 0.670296068
+2024-04-30 05:39:00,496 - INFO - Profiling results...
+2024-04-30 05:40:14,795 - INFO - Profiling results for bert-large-uncased and qqp are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W4_8A16/qqp folder.
+2024-04-30 05:40:14,795 - INFO - Average time taken for batch: 0.022516999063612538
+2024-04-30 05:40:14,796 - INFO - Accuracy before quantization: {'accuracy': 0.9108335394509028, 'f1': 0.8808855113167025, 'average': 0.8958595253838026}
+2024-04-30 05:40:14,796 - INFO - Quantizing model...
+2024-04-30 05:40:14,920 - INFO - Size after Quantization (GB): 0.223805444
+2024-04-30 05:40:14,920 - INFO - Compression ratio: 2.9949944738609666
+2024-04-30 05:44:00,171 - INFO - Profiling results...
+2024-04-30 05:47:37,897 - INFO - Profiling results for bert-large-uncased and qqp are saved in /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/profiling_results/bert-large-uncased/W4_8A16/qqp folder.
+2024-04-30 05:47:37,897 - INFO - Average time taken for batch: 0.17143580581568466
+2024-04-30 05:47:37,898 - INFO - Accuracy after quantization: {'accuracy': 0.8990353697749196, 'f1': 0.8626329250235564, 'average': 0.880834147399238}
+2024-04-30 05:47:37,906 - INFO - Quantization results are saved at /work/pi_dhruveshpate_umass_edu/debanjanmond_umass_edu/ZeroQuant/results/performance_results/bert-large-uncased/qqp.txt
