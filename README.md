@@ -1,4 +1,4 @@
-# ZeroQuant Model Compression examples
+# ZeroQuant Implementation
 
 Examples in this folder are helpful to try out some features and models that take advantage of the DeepSpeed compression library.
 
